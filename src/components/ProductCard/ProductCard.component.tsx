@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { AddToCartHandler } from '@/App';
-import cart from '@/assets/products/Cart.svg?react';
+import cart from '@/assets/products/Cart.svg';
 import type { Product } from '@/interfaces/Product';
 
 import headerStyles from '../Header/header.module.css';
