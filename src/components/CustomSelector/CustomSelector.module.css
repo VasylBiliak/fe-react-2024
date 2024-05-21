@@ -12,6 +12,16 @@
   position: relative;
 }
 
+.selector__drop {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -20px;
+}
+
 .selector__open .selector__drop {
   display: block;
 }
@@ -44,16 +54,6 @@
 
 .selector__icon_down {
   transform: rotate(0deg);
-}
-
-.selector .selector__drop {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  margin-top: -20px;
 }
 
 .selector__drop > button {
