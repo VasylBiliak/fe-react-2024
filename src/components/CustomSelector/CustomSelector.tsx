@@ -39,9 +39,12 @@ function CustomSelector() {
     return (
         <div className={styles.selector}>
             <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
-                <button className={styles.selector__btn} onClick={() => setIsOpen((previous) => !previous)}>
+                <button
+                    className={`${styles.menu__btn} ${isOpen ? styles.menu__active_dtn : ''}`}
+                    onClick={() => setIsOpen((previous) => !previous)}
+                >
                     {currentSelector.title}
-                    <img src={IconArrowUp} className={isOpen ? styles.selector__icon_up : styles.selector__icon_down} alt="Icon arrow up" />
+                    <img src={IconArrowUp} className={isOpen ? styles.menu__icon_up : styles.menu__icon_down} alt="Icon arrow up" />
                 </button>
                 <div className={styles.selector__drop}>
                     {menuSelectors.map((item) => (

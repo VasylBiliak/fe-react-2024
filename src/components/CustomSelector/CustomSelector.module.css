@@ -26,12 +26,11 @@
   display: block;
 }
 
-.selector__btn {
+.menu__btn {
   width: 160px;
   padding: 10px 20px;
-  background-color: var(--red-el);
-  color: var(--text-color);
-  border: none;
+  color: var(--grey-2);
+  border: 1px solid var(--grey-4);
   border-radius: 50px;
   display: flex;
   gap: 15px;
@@ -42,18 +41,30 @@
   position: relative;
 }
 
-.selector__icon_up,
-.selector__icon_down {
+.menu__btn:hover,
+.menu__active_dtn {
+  border: 1px solid transparent;
+  background-color: var(--red-el);
+  color: #FFF;
+}
+
+.menu__icon_up,
+.menu__icon_down {
   width: 18px;
   height: 18px;
 }
 
-.selector__icon_up {
-  transform: rotate(180deg);
+.menu__icon_up {
+  transform: rotate(0deg);
 }
 
-.selector__icon_down {
-  transform: rotate(0deg);
+.menu__icon_down {
+  transform: rotate(180deg);
+  filter: brightness(.5);
+}
+
+.menu__btn:hover .menu__icon_down {
+  filter: brightness(1);
 }
 
 .selector__drop > button {
