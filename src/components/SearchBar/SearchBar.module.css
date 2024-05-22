@@ -55,7 +55,7 @@
 
 .sort_by {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr ;
   align-items: center;
   text-align: center;
   gap: 10px;
@@ -100,6 +100,29 @@
   border-right: 6px solid transparent;
   border-top: 6px solid #FFF;
   transform: translateY(-50%);
+}
+
+@media (max-width: 1020px) {
+
+  .filters_bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    row-gap: 20px;
+  }
+
+  .filters {
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sort_by__text {
+    font-family: var(--main-font);
+    width: 100%;
+  }
 }
 
 @media (max-width: 870px) {

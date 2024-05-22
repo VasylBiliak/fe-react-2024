@@ -90,4 +90,5 @@
 
 .selector__drop button:hover {
   background-color: var(--red-el);
+  color: #FFF;
 }
