@@ -3,13 +3,12 @@ import type { Category } from './Category';
 interface Product {
     id: number;
     title: string;
-    description: string;
     price: number;
+    description: string;
     images: string[];
     category: Category;
-    creationAt: Date;
-    updatedAt: Date;
-    sort: 'newest' | 'oldest' | 'highestPrice' | 'lowestPrice';
+    creationAt: Date | string;
+    updatedAt: Date | string;
 }
 
 export type { Product };
