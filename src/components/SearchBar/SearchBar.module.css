@@ -18,7 +18,6 @@
   width: 100%;
   border: none;
   padding-left: 10px;
-  overflow: hidden;
   color: var(--text-color);
   background-color: var(--background-color-alt);
 }
