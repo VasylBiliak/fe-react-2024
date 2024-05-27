@@ -18,8 +18,13 @@
   width: 100%;
   border: none;
   padding-left: 10px;
+  overflow: hidden;
   color: var(--text-color);
   background-color: var(--background-color-alt);
+}
+
+.filters_bar__search > input:focus {
+  outline: none;
 }
 
 .filters_bar__btn {
