@@ -22,6 +22,10 @@
   background-color: var(--background-color-alt);
 }
 
+.filters_bar__search > input:focus {
+  outline: none;
+}
+
 .filters_bar__btn {
   display: flex;
   align-items: center;
