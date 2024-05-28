@@ -1,0 +1,94 @@
+.selector {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.selector__menu {
+  padding: 0;
+  margin: 0;
+  display: block;
+  z-index: 2;
+  position: relative;
+}
+
+.selector__drop {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -20px;
+}
+
+.selector__open .selector__drop {
+  display: block;
+}
+
+.menu__btn {
+  width: 160px;
+  padding: 10px 20px;
+  color: var(--grey-2);
+  border: 1px solid var(--grey-4);
+  border-radius: 50px;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
+.menu__btn:hover,
+.menu__active_dtn {
+  border: 1px solid transparent;
+  background-color: var(--red-el);
+  color: #FFF;
+}
+
+.menu__icon_up,
+.menu__icon_down {
+  width: 18px;
+  height: 18px;
+}
+
+.menu__icon_up {
+  transform: rotate(0deg);
+}
+
+.menu__icon_down {
+  transform: rotate(180deg);
+  filter: brightness(.5);
+}
+
+.menu__btn:hover .menu__icon_down {
+  filter: brightness(1);
+}
+
+.selector__drop > button {
+  width: 200px;
+  padding: 10px 0;
+  align-items: center;
+  text-align: center;
+  background-color: var(--grey-4);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.selector__drop button:first-child {
+  z-index: -1;
+  padding-top: 30px;
+}
+
+.selector__drop button:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
+.selector__drop button:hover {
+  background-color: var(--red-el);
+  color: #FFF;
+}

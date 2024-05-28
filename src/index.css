@@ -1,5 +1,30 @@
 :root {
   --main-font: "Montserrat", sans-serif;
+  --red-el: #EF4934;
+  --white: #FFF;
+}
+
+[data-theme="dark"] {
+  --color-icon-svg: brightness(100);
+  --background-color: #111;
+  --text-color: #FFF;
+  --grey-1: #F1F1F1;
+  --grey-2: #CCC;
+  --grey-3: #333;
+  --grey-4: #656565;
+  --background-color-alt: #111;
+}
+
+[data-theme="light"] {
+  --color-icon-svg: brightness(0);
+  --active-color-icon: #FFF;
+  --background-color: #FFF;
+  --text-color: #111;
+  --grey-1: #333;
+  --grey-2: #656565;
+  --grey-3: #CCC;
+  --grey-4: #E1E1E1;
+  --background-color-alt: #FFF;
 }
 
 html {
@@ -9,13 +34,14 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
 
 button {
   all: initial;

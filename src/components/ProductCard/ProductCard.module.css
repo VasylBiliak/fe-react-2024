@@ -2,7 +2,7 @@
   width: 275px;
   height: 344px;
   padding: 20px 15px 15px;
-  border: 1px solid #CCC;
+  border: 1px solid var(--grey-4);
   border-radius: 20px;
 }
 
@@ -26,6 +26,7 @@
   margin-top: 12px;
   font-weight: 600;
   font-size: 22px;
+  font-family: var(--main-font);
 }
 
 .inf {
@@ -34,15 +35,36 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  font-family: var(--main-font);
 }
 
 
 .price {
   font-size: 24px;
   font-weight: 600;
-  stroke: #000;
+  stroke: var(--text-color);
+  font-family: var(--main-font);
 }
 
 .price > span {
   font-size: 14px;
 }
+
+.wrapper_cart {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.wrapper_cart {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.wrapper_cart > img {
+  filter: var(--color-icon-svg);
+}
+
