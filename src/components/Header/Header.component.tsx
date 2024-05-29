@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import cart from '@/assets/header/cart.svg';
 import darkIcon from '@/assets/header/dark_active.svg';
@@ -8,8 +8,8 @@ import loginImg from '@/assets/header/login.svg';
 import menu from '@/assets/header/Menu_Duo_LG.svg';
 import userAdd from '@/assets/header/user_add.svg';
 import logo from '@/assets/logo.svg';
+import { Cart } from '@/context/Cart';
 import { Component } from '@/interfaces/Component';
-import type { Product } from '@/interfaces/Product';
 import { Theme } from '@/interfaces/Theme';
 
 import styles from './header.module.css';
@@ -17,14 +17,14 @@ import styles from './header.module.css';
 interface HeaderProps {
     onChangeComponent: (component: Component) => void;
     activeComponent: Component;
-    cartData: Array<Product>;
 }
 
 const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-export function HeaderComponent({ onChangeComponent, activeComponent, cartData }: HeaderProps) {
+export function HeaderComponent({ onChangeComponent, activeComponent }: HeaderProps) {
     let initialTheme: Theme;
+    const { cartData } = useContext(Cart);
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;
     } else {
@@ -74,7 +74,7 @@ export function HeaderComponent({ onChangeComponent, activeComponent, cartData }
                 </button>
                 <button className={`${styles.wrapper_cart} ${styles.cart__link}`} title="Cart">
                     <img src={cart} alt="Cart" width="24px" height="24px" />
-                    {cartData.length > 0 && <span className={styles.product_quantity}>{cartData.length}</span>}
+                    {cartData && cartData.length > 0 && <span className={styles.product_quantity}>{cartData.length}</span>}
                 </button>
                 <button className={styles.header__login_btn}>
                     <img src={loginImg} alt="login Img" className={styles.login_img} />

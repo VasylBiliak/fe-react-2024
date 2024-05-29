@@ -1,26 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import type { AddToCartHandler } from '@/App';
-import type { Product } from '@/interfaces/Product';
+import { ProductsDataContext } from '@/context/Product';
 
 import { ProductCard } from '../ProductCard/ProductCard.component';
 import { SearchBar } from '../SearchBar/SearchBar.component';
 
 import styles from './ProductsList.module.css';
 
-interface ProductsListProps {
-    handleAddToCart: AddToCartHandler;
-    cartData: Product[];
-    data: Product[];
-}
+export function ProductsList() {
+    const { productsData } = useContext(ProductsDataContext);
 
-export function ProductsList({ cartData, handleAddToCart, data }: ProductsListProps) {
     return (
         <section className={styles.wrapper_list}>
             <SearchBar />
+            {/* <Pagination />*/}
             <div className={styles.product}>
-                {data.map((productData) => (
-                    <ProductCard key={productData.title} productData={productData} onAddToCart={handleAddToCart} cartData={cartData} />
+                {productsData.map((productData) => (
+                    <ProductCard key={productData.title} productData={productData} />
                 ))}
             </div>
         </section>

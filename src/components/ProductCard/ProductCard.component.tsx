@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
-import type { AddToCartHandler } from '@/App';
 import cart from '@/assets/products/Cart.svg';
+import { Cart } from '@/context/Cart';
 import type { Product } from '@/interfaces/Product';
 
 import headerStyles from '../Header/header.module.css';
@@ -9,11 +9,10 @@ import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
     productData: Product;
-    onAddToCart: AddToCartHandler;
-    cartData: Product[];
 }
 
-export function ProductCard({ onAddToCart, productData, cartData }: ProductCardProps) {
+export function ProductCard({ productData }: ProductCardProps) {
+    const { cartData, handleAddToCart } = useContext(Cart);
     const itemsQty = cartData.filter((item) => item.title === productData.title);
 
     return (
@@ -25,7 +24,7 @@ export function ProductCard({ onAddToCart, productData, cartData }: ProductCardP
                     <div className={styles.price}>
                         {productData.price} <span> ₴</span>
                     </div>
-                    <button className={`${styles.wrapper_cart}`} onClick={() => onAddToCart(productData)}>
+                    <button className={`${styles.wrapper_cart}`} onClick={() => handleAddToCart(productData)}>
                         {itemsQty.length > 0 && <span className={headerStyles.product_quantity}>{itemsQty.length}</span>}
                         <img src={cart} alt="Cart" width="24px" height="24px" />
                     </button>
