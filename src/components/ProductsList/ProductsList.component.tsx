@@ -20,7 +20,7 @@ export function ProductsList({ productsData, isError, isLoading }: ProductsListP
     }
 
     if (productsData.length === 0) {
-        return <div className={styles.product__event}>The search yielded no results...(</div>;
+        return <div className={styles.product__event}>Sorry, no matches found...(</div>;
     }
 
     return (
