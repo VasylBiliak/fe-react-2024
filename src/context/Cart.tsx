@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import type { Product } from '@/interfaces/Product';
 
@@ -12,25 +12,26 @@ export const Cart = createContext<CartContextInterface>({
     handleAddToCart: () => {},
 });
 
-interface CartContextProviderProperty {
-    children: React.ReactNode;
-}
-const CardKey = 'cart';
-const localCart: Product[] = localStorage.getItem(CardKey) ? JSON.parse(localStorage.getItem(CardKey)!) : [];
+const CartKey = 'cart';
 
-export function CartContextProvider({ children }: CartContextProviderProperty) {
-    const [cartData, setCartData] = useState<Product[]>(localCart);
+export function CartContextProvider({ children }: { children: React.ReactNode }) {
+    const [cartData, setCartData] = useState<Product[]>([]);
 
-    function handleAddToCart(item: Product) {
-        setCartData((previousCart) => {
-            const updatedCart = [...previousCart, item];
-            localStorage.setItem(CardKey, JSON.stringify(updatedCart));
-            return updatedCart;
-        });
-    }
+    useEffect(() => {
+        const localCart = JSON.parse(localStorage.getItem(CartKey) || '[]');
+        setCartData(localCart);
+    }, []);
+
+    const handleAddToCart = (item: Product) => {
+        const updatedCart = [...cartData, item];
+        localStorage.setItem(CartKey, JSON.stringify(updatedCart));
+        setCartData(updatedCart);
+    };
+
     const contextValue = {
         cartData,
         handleAddToCart,
     };
+
     return <Cart.Provider value={contextValue}>{children}</Cart.Provider>;
 }

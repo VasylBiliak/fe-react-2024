@@ -4,14 +4,14 @@ import type { Product } from '@/interfaces/Product';
 
 interface ProductsDataContextInterface {
     productsData: Product[];
-    isErrorFetchingProductsData: boolean;
-    isLoadingProductsData: boolean;
+    isError: boolean;
+    isLoading: boolean;
 }
 
 export const ProductsDataContext = createContext<ProductsDataContextInterface>({
     productsData: [],
-    isErrorFetchingProductsData: false,
-    isLoadingProductsData: true,
+    isLoading: true,
+    isError: false,
 });
 
 interface ProductsDataContextProviderProps {
@@ -20,8 +20,8 @@ interface ProductsDataContextProviderProps {
 
 export function ProductsDataContextProvider({ children }: ProductsDataContextProviderProps) {
     const [productsData, setProductsData] = useState<Product[]>([]);
-    const [isErrorFetchingProductsData, setIsErrorFetchingProductsData] = useState(false);
-    const [isLoadingProductsData, setIsLoadingProductsData] = useState(true);
+    const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     // console.log(productsData);
 
     useEffect(() => {
@@ -32,12 +32,11 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
                 if (response.ok) {
                     const data = await response.json();
                     setProductsData(data);
-                    setIsErrorFetchingProductsData(false);
-                    setIsLoadingProductsData(false);
+                    setIsError(false);
+                    setIsLoading(false);
                 } else {
-                    setIsErrorFetchingProductsData(true);
-                    setIsLoadingProductsData(false);
-                    throw new Error('Error fetching products data');
+                    setIsError(true);
+                    setIsLoading(false);
                 }
             } catch (error) {
                 console.error(error);
@@ -47,8 +46,8 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
 
     const contextValue = {
         productsData,
-        isErrorFetchingProductsData,
-        isLoadingProductsData,
+        isError,
+        isLoading,
     };
 
     return <ProductsDataContext.Provider value={contextValue}>{children}</ProductsDataContext.Provider>;

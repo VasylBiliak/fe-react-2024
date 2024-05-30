@@ -1,24 +1,33 @@
-import React, { useContext } from 'react';
-
-import { ProductsDataContext } from '@/context/Product';
+import React from 'react';
 
 import { ProductCard } from '../ProductCard/ProductCard.component';
-import { SearchBar } from '../SearchBar/SearchBar.component';
 
 import styles from './ProductsList.module.css';
 
-export function ProductsList() {
-    const { productsData } = useContext(ProductsDataContext);
+interface ProductsListProps {
+    productsData: any[];
+    isError: boolean;
+    isLoading: boolean;
+}
+
+export function ProductsList({ productsData, isError, isLoading }: ProductsListProps) {
+    if (isLoading) {
+        return <div className={styles.product__event}>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div className={styles.product__event}>Error fetching products data...</div>;
+    }
+
+    if (productsData.length === 0) {
+        return <div className={styles.product__event}>The search yielded no results...(</div>;
+    }
 
     return (
-        <section className={styles.wrapper_list}>
-            <SearchBar />
-            {/* <Pagination />*/}
-            <div className={styles.product}>
-                {productsData.map((productData) => (
-                    <ProductCard key={productData.title} productData={productData} />
-                ))}
-            </div>
-        </section>
+        <div className={styles.product}>
+            {productsData.map((product) => (
+                <ProductCard key={product.id} productData={product} />
+            ))}
+        </div>
     );
 }

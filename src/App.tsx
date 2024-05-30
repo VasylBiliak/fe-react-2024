@@ -7,7 +7,8 @@ import { ProductsDataContextProvider } from '@/context/Product';
 import { AboutComponent } from './components/About/About.component.tsx';
 import { FooterComponent } from './components/Footer/Footer.component.tsx';
 import { HeaderComponent } from './components/Header/Header.component.tsx';
-import { ProductsList } from './components/ProductsList/ProductsList.component.tsx';
+import { MenuContent } from './components/Menu/Menu.component';
+import { MainContent } from './components/ProductsList/MainContent.component.tsx';
 import { Component } from './interfaces/Component.ts';
 
 import './index.css';
@@ -25,7 +26,10 @@ function App() {
                 <HeaderComponent onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
                 <main>
                     {currentComponent === Component.ABOUT && <AboutComponent />}
-                    {currentComponent === Component.PRODUCTS && <ProductsList />}
+                    {currentComponent === Component.PRODUCTS && <MainContent />}
+                    {currentComponent === Component.MENU && (
+                        <MenuContent onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
+                    )}
                 </main>
                 <FooterComponent />
             </ProductsDataContextProvider>
