@@ -10,7 +10,7 @@ import { MenuPage } from './components/Menu/Menu.component';
 import { ProductsPage } from './components/ProductsPage/ProductsPage.component';
 import { Component } from './interfaces/Component.ts';
 
-import styles from './index.css';
+import styles from './app.component.css';
 
 function App() {
     const [currentComponent, setCurrentComponent] = useState<Component>(Component.ABOUT);
@@ -23,15 +23,19 @@ function App() {
         <CartContextProvider>
             <ProductsDataContextProvider>
                 <div className={styles.app_container}>
-                    <Header className={styles.header} onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
-                    <main className={styles.main}>
+                    <Header
+                        className={styles.app_container__header}
+                        onChangeComponent={handleChangeContent}
+                        activeComponent={currentComponent}
+                    />
+                    <main className={styles.app_container__main}>
                         {currentComponent === Component.ABOUT && <AboutPage />}
                         {currentComponent === Component.PRODUCTS && <ProductsPage />}
                         {currentComponent === Component.MENU && (
                             <MenuPage onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
                         )}
                     </main>
-                    <Footer className={styles.footer} />
+                    <Footer className={styles.app_container__footer} />
                 </div>
             </ProductsDataContextProvider>
         </CartContextProvider>
