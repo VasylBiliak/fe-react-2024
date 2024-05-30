@@ -23,7 +23,7 @@ function App() {
         <CartContextProvider>
             <ProductsDataContextProvider>
                 <div className="app_container">
-                    <Header className="app_container__header" onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
+                    <Header onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
                     <main className="app_container__main">
                         {currentComponent === Component.ABOUT && <AboutPage />}
                         {currentComponent === Component.PRODUCTS && <ProductsPage />}
@@ -31,7 +31,7 @@ function App() {
                             <MenuPage onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
                         )}
                     </main>
-                    <Footer className="app_container__footer" />
+                    <Footer />
                 </div>
             </ProductsDataContextProvider>
         </CartContextProvider>
