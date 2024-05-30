@@ -10,7 +10,7 @@ import { MenuPage } from './components/Menu/Menu.component';
 import { ProductsPage } from './components/ProductsPage/ProductsPage.component';
 import { Component } from './interfaces/Component.ts';
 
-import styles from './app.component.css';
+import styles from './app.module.css';
 
 function App() {
     const [currentComponent, setCurrentComponent] = useState<Component>(Component.ABOUT);
