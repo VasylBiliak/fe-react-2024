@@ -16,7 +16,7 @@ interface HeaderProps {
 const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-export function MenuContent({ onChangeComponent, activeComponent }: HeaderProps) {
+export function MenuPage({ onChangeComponent, activeComponent }: HeaderProps) {
     let initialTheme: Theme;
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;

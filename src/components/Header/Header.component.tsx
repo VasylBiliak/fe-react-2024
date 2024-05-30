@@ -22,7 +22,7 @@ interface HeaderProps {
 const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-export function HeaderComponent({ onChangeComponent, activeComponent }: HeaderProps) {
+export function Header({ onChangeComponent, activeComponent }: HeaderProps) {
     let initialTheme: Theme;
     const { cartData } = useContext(Cart);
     if (localStorage.getItem('theme')) {

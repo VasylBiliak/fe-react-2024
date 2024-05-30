@@ -6,17 +6,19 @@ import { CustomSelector } from '@/components/CustomSelector/CustomSelector';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
-    setFilter: (filter: string | null) => void;
+    setFilter: (filter: string) => void;
     setSort: (sort: string) => void;
     setSearchQuery: (query: string) => void;
 }
 
 function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
-    const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+    const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const [searchInput, setSearchInput] = useState<string>('');
 
-    const handleFilterChange = (filter: string | null) => {
-        setSelectedFilter(filter);
+    const handleFilterChange = (filter: string) => {
+        setSelectedFilters((previousFilters) =>
+            previousFilters.includes(filter) ? previousFilters.filter((f) => f !== filter) : [...previousFilters, filter],
+        );
         setFilter(filter);
     };
 
@@ -45,20 +47,20 @@ function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
 
             <div className={styles.filters}>
                 <button
-                    className={`${styles.filter__btn} ${selectedFilter === 'Electronics' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange(selectedFilter === 'Electronics' ? null : 'Electronics')}
+                    className={`${styles.filter__btn} ${selectedFilters.includes('Electronics') ? styles.filters_btn_active : ''}`}
+                    onClick={() => handleFilterChange('Electronics')}
                 >
                     Electronics
                 </button>
                 <button
-                    className={`${styles.filter__btn} ${selectedFilter === 'Shoes' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange(selectedFilter === 'Shoes' ? null : 'Shoes')}
+                    className={`${styles.filter__btn} ${selectedFilters.includes('Shoes') ? styles.filters_btn_active : ''}`}
+                    onClick={() => handleFilterChange('Shoes')}
                 >
                     Shoes
                 </button>
                 <button
-                    className={`${styles.filter__btn} ${selectedFilter === 'Clothes' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange(selectedFilter === 'Clothes' ? null : 'Clothes')}
+                    className={`${styles.filter__btn} ${selectedFilters.includes('Clothes') ? styles.filters_btn_active : ''}`}
+                    onClick={() => handleFilterChange('Clothes')}
                 >
                     Clothes
                 </button>

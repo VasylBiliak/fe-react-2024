@@ -1,6 +1,5 @@
 .footer {
   width: 100%;
-  margin-top: auto;
 }
 
 .line {
@@ -8,10 +7,6 @@
   color: #CCC;
   width: calc(100% - 112px);
   margin: 0 53px;
-}
-
-.footer__container {
-  width: 100%;
 }
 
 .footer__content {

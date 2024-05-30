@@ -70,6 +70,7 @@
 .sort_by__text {
   width: 60px;
   color: var(--text-color);
+  white-space: nowrap;
 }
 
 .sort_by__select {
