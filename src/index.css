@@ -43,16 +43,16 @@ body {
   grid-template-columns: 1fr;
 }
 
-.header {
+.app_container__header {
   height: 80px;
 }
 
-.main {
+.app_container__main {
   padding-top: 30px;
   min-height: calc(100vh - 80px);
 }
 
-.footer {
+.app_container__footer {
   width: 100%;
   margin-top: auto;
 }
