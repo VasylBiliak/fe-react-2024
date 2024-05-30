@@ -22,7 +22,6 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
     const [productsData, setProductsData] = useState<Product[]>([]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    // console.log(productsData);
 
     useEffect(() => {
         (async function () {

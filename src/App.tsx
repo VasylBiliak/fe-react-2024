@@ -1,4 +1,3 @@
-// App.tsx
 import { useState } from 'react';
 
 import { CartContextProvider } from '@/context/Cart';
