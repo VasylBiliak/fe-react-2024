@@ -38,6 +38,25 @@ body {
   color: var(--text-color);
 }
 
+.app_container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.app_container__header {
+  height: 80px;
+}
+
+.app_container__main {
+  padding-top: 30px;
+  min-height: calc(100vh - 80px);
+}
+
+.app_container__footer {
+  width: 100%;
+  margin-top: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;

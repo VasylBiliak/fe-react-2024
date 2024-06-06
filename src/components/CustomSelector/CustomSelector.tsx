@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import IconArrowUp from '@/assets/products/Ikon_arrow_up.svg';
+import IconArrowUp from '@/assets/icon/Icon_arrow_up.svg';
 import type { Selector } from '@/interfaces/Selector';
 
 import styles from './CustomSelector.module.css';
@@ -24,7 +24,11 @@ const selectors: Selector[] = [
     },
 ];
 
-function CustomSelector() {
+interface CustomSelectorProps {
+    setSort: (sort: string) => void;
+}
+
+function CustomSelector({ setSort }: CustomSelectorProps) {
     const [currentSelector, setCurrentSelector] = useState(selectors[0]);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,6 +37,7 @@ function CustomSelector() {
     function handleChangeSelector(selector: Selector['selector']) {
         const newSelector = selectors.find((item) => item.selector === selector)!;
         setCurrentSelector(newSelector);
+        setSort(newSelector.selector);
         setIsOpen(false);
     }
 
@@ -40,7 +45,7 @@ function CustomSelector() {
         <div className={styles.selector}>
             <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
                 <button
-                    className={`${styles.menu__btn} ${isOpen ? styles.menu__active_dtn : ''}`}
+                    className={`${styles.menu__btn} ${isOpen ? styles.menu__active_btn : ''}`}
                     onClick={() => setIsOpen((previous) => !previous)}
                 >
                     {currentSelector.title}

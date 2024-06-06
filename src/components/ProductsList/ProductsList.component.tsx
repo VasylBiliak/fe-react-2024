@@ -1,28 +1,33 @@
 import React from 'react';
 
-import type { AddToCartHandler } from '@/App';
-import type { Product } from '@/interfaces/Product';
-
 import { ProductCard } from '../ProductCard/ProductCard.component';
-import { SearchBar } from '../SearchBar/SearchBar.component';
 
 import styles from './ProductsList.module.css';
 
 interface ProductsListProps {
-    handleAddToCart: AddToCartHandler;
-    cartData: Product[];
-    data: Product[];
+    productsData: any[];
+    isError: boolean;
+    isLoading: boolean;
 }
 
-export function ProductsList({ cartData, handleAddToCart, data }: ProductsListProps) {
+export function ProductsList({ productsData, isError, isLoading }: ProductsListProps) {
+    if (isLoading) {
+        return <div className={styles.product__event}>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div className={styles.product__event}>Error fetching products data...</div>;
+    }
+
+    if (productsData.length === 0) {
+        return <div className={styles.product__event}>Sorry, no matches found...(</div>;
+    }
+
     return (
-        <section className={styles.wrapper_list}>
-            <SearchBar />
-            <div className={styles.product}>
-                {data.map((productData) => (
-                    <ProductCard key={productData.title} productData={productData} onAddToCart={handleAddToCart} cartData={cartData} />
-                ))}
-            </div>
-        </section>
+        <div className={styles.product}>
+            {productsData.map((product) => (
+                <ProductCard key={product.id} productData={product} />
+            ))}
+        </div>
     );
 }

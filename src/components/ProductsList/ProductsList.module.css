@@ -1,5 +1,10 @@
-.wrapper_list {
-  padding: 30px 25px 60px;
+.product__event {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--main-font);
+  font-size: 22px;
 }
 
 .product {

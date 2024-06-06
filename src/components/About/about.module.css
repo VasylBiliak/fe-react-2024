@@ -1,12 +1,8 @@
-.about {
-  padding: 30px;
-  min-height: calc(100vh - 150px);
-}
-
 .content {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
+  padding: 30px;
 }
 
 .picture {

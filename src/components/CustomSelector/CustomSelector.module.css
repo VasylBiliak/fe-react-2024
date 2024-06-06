@@ -42,7 +42,7 @@
 }
 
 .menu__btn:hover,
-.menu__active_dtn {
+.menu__active_btn {
   border: 1px solid transparent;
   background-color: var(--red-el);
   color: #FFF;
