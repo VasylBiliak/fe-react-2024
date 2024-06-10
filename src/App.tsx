@@ -1,38 +1,28 @@
-import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import { CartContextProvider } from '@/context/Cart';
 import { ProductsDataContextProvider } from '@/context/Product';
+import { Component } from '@/interfaces/Component';
 
 import { AboutPage } from './components/About/About.component.tsx';
-import { Footer } from './components/Footer/Footer.component.tsx';
-import { Header } from './components/Header/Header.component.tsx';
+import { LayoutPage } from './components/Layout/Layout.component';
 import { MenuPage } from './components/Menu/Menu.component';
 import { ProductsPage } from './components/ProductsPage/ProductsPage.component';
-import { Component } from './interfaces/Component.ts';
-
-import './index.css';
+import { PageNotFound } from './pages/PageNotFound/PageNotFound.component';
 
 function App() {
-    const [currentComponent, setCurrentComponent] = useState<Component>(Component.ABOUT);
-
-    function handleChangeContent(content: Component) {
-        setCurrentComponent(content);
-    }
-
     return (
         <CartContextProvider>
             <ProductsDataContextProvider>
-                <div className="app_container">
-                    <Header onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
-                    <main className="app_container__main">
-                        {currentComponent === Component.ABOUT && <AboutPage />}
-                        {currentComponent === Component.PRODUCTS && <ProductsPage />}
-                        {currentComponent === Component.MENU && (
-                            <MenuPage onChangeComponent={handleChangeContent} activeComponent={currentComponent} />
-                        )}
-                    </main>
-                    <Footer />
-                </div>
+                <Routes>
+                    <Route path={Component.ABOUT} element={<LayoutPage />}>
+                        <Route index element={<AboutPage />} />
+                        <Route path={Component.PRODUCTS} element={<ProductsPage />} />
+                        <Route path={Component.MENU} element={<MenuPage />} />
+                        {/* <Route path={`${Component.PRODUCTS_PAGE}`} element={<ProductPage />} />*/}
+                        <Route path="*" element={<PageNotFound />} />
+                    </Route>
+                </Routes>
             </ProductsDataContextProvider>
         </CartContextProvider>
     );

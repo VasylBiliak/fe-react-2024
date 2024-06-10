@@ -1,5 +1,6 @@
 export enum Component {
-    ABOUT = 'about',
-    PRODUCTS = 'products',
-    MENU = 'menu',
+    ABOUT = '/',
+    PRODUCTS = '/product_list',
+    MENU = '/menu',
+    PRODUCTS_PAGE = '/product_page/:id',
 }

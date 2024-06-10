@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import darkIcon from '@/assets/header/dark_active.svg';
 import divider from '@/assets/header/divider.svg';
@@ -8,15 +9,10 @@ import { Theme } from '@/interfaces/Theme';
 
 import styles from './Menu.module.css';
 
-interface HeaderProps {
-    onChangeComponent: (component: Component) => void;
-    activeComponent: Component;
-}
-
 const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-export function MenuPage({ onChangeComponent, activeComponent }: HeaderProps) {
+export function MenuPage() {
     let initialTheme: Theme;
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;
@@ -27,22 +23,29 @@ export function MenuPage({ onChangeComponent, activeComponent }: HeaderProps) {
     const [theme, setTheme] = useState<Theme>(initialTheme);
     htmlElement!.dataset.theme = theme;
 
+    const navigate = useNavigate();
+
     function handleChangeTheme(themeText: Theme) {
         setTheme(themeText);
         localStorage.setItem('theme', themeText);
     }
+
+    function handleNavigate(path: Component) {
+        navigate(path, { replace: true });
+    }
+
     return (
         <section className={styles.wrapper_menu}>
             <nav className={styles.list_links}>
                 <button
-                    className={activeComponent === Component.ABOUT ? styles.list_link_active : styles.list_btn}
-                    onClick={() => onChangeComponent(Component.ABOUT)}
+                    className={window.location.pathname === Component.ABOUT ? styles.list_link_active : styles.list_btn}
+                    onClick={() => handleNavigate(Component.ABOUT)}
                 >
                     <span className={styles.list_btn__text}>About</span>
                 </button>
                 <button
-                    className={activeComponent === Component.PRODUCTS ? styles.list_link_active : styles.list_btn}
-                    onClick={() => onChangeComponent(Component.PRODUCTS)}
+                    className={window.location.pathname === Component.PRODUCTS ? styles.list_link_active : styles.list_btn}
+                    onClick={() => handleNavigate(Component.PRODUCTS)}
                 >
                     <span className={styles.list_btn__text}>Products</span>
                 </button>
