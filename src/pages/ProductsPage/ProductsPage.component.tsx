@@ -2,10 +2,9 @@ import React, { useContext, useState } from 'react';
 
 import { Pagination } from '@/components/Pagination/Pagination.component';
 import { ProductsList } from '@/components/ProductsList/ProductsList.component';
+import { SearchBar } from '@/components/SearchBar/SearchBar.component';
 import { ProductsDataContext } from '@/context/Product';
 import { useFilteredProducts, usePaginatedProducts, useSearchedProducts, useSortedProducts } from '@/hooks/productsHooks';
-
-import { SearchBar } from '../SearchBar/SearchBar.component';
 
 import styles from './ProductsPage.module.css';
 
