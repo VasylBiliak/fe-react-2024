@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import cart from '@/assets/header/cart.svg';
 import darkIcon from '@/assets/header/dark_active.svg';
@@ -15,17 +15,14 @@ import { Theme } from '@/interfaces/Theme';
 
 import styles from './header.module.css';
 
-interface HeaderProps {
-    activeComponent: Component;
-}
-
 const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-export function Header({ activeComponent }: HeaderProps) {
+export function Header() {
     let initialTheme: Theme;
     const { cartData } = useContext(Cart);
     const navigate = useNavigate();
+    const location = useLocation();
 
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;
@@ -39,6 +36,10 @@ export function Header({ activeComponent }: HeaderProps) {
     function handleChangeTheme(themeText: Theme) {
         setTheme(themeText);
         localStorage.setItem('theme', themeText);
+    }
+
+    function isActiveComponent(component: Component): boolean {
+        return location.pathname === component;
     }
 
     return (
@@ -63,13 +64,13 @@ export function Header({ activeComponent }: HeaderProps) {
             </div>
             <nav className={styles.header__links}>
                 <button
-                    className={activeComponent === Component.ABOUT ? styles.header__link_active : styles.header__link}
+                    className={isActiveComponent(Component.ABOUT) ? styles.header__link_active : styles.header__link}
                     onClick={() => navigate(Component.ABOUT)}
                 >
                     About
                 </button>
                 <button
-                    className={activeComponent === Component.PRODUCTS ? styles.header__link_active : styles.header__link}
+                    className={isActiveComponent(Component.PRODUCTS) ? styles.header__link_active : styles.header__link}
                     onClick={() => navigate(Component.PRODUCTS)}
                 >
                     Products
