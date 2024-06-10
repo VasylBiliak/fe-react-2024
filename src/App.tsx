@@ -21,8 +21,6 @@ function App() {
                         <Route path={Component.PRODUCTS} element={<ProductsPage />} />
                         <Route path={Component.MENU} element={<MenuPage />} />
                         <Route path={`${Component.PRODUCT_PAGE}/:id`} element={<ProductPage />} />
-
-                        {/* <Route path={'/product_page/:id'} element={<ProductPage />} />*/}
                         <Route path="*" element={<PageNotFound />} />
                     </Route>
                 </Routes>
