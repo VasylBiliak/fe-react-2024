@@ -8,7 +8,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
     <React.StrictMode>
-        <BrowserRouter basename="/fe-react-2024">
+        <BrowserRouter basename="/fe-react-2024/">
             <App />
         </BrowserRouter>
     </React.StrictMode>,

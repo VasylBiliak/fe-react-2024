@@ -3,14 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import cart from '@/assets/header/cart.svg';
 import { Cart } from '@/context/Cart';
-import { ProductsDataContext } from '@/context/Product';
+import { ProductsDataContext } from '@/context/ProductsList';
 
 import styles from './productPage.module.css';
 
 export const ProductPage: React.FC = () => {
     const { handleAddToCart } = useContext(Cart);
-    const { productsData } = useContext(ProductsDataContext);
-    const products = productsData;
+    const { productsList } = useContext(ProductsDataContext);
+    const products = productsList;
     const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const product = products.find((p) => p.id === Number(id));
