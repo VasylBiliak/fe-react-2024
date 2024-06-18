@@ -1,24 +1,62 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import cart from '@/assets/header/cart.svg';
 import { Cart } from '@/context/Cart';
-import { ProductsDataContext } from '@/context/ProductsList';
+import { fetchProduct } from '@/context/productDataContext';
+import type { Product } from '@/interfaces/Product';
 
 import styles from './productPage.module.css';
 
 export const ProductPage: React.FC = () => {
     const { handleAddToCart } = useContext(Cart);
-    const { productsList } = useContext(ProductsDataContext);
-    const products = productsList;
-    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
-    const product = products.find((p) => p.id === Number(id));
-    const [imageTitle, setImageTitle] = useState(product ? product.images[0] : '');
+    const navigate = useNavigate();
 
-    if (!product) {
-        return <span>Product not found</span>;
+    const [product, setProduct] = useState<Product | null>(null);
+    const [imageTitle, setImageTitle] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+
+    useEffect(() => {
+        const getProduct = async (productId: string) => {
+            try {
+                const data = await fetchProduct(productId);
+                setProduct(data);
+                setIsError(false);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        if (id) {
+            getProduct(id);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        if (product) {
+            setImageTitle(product.images[0]);
+        }
+    }, [product]);
+
+    if (isLoading) {
+        return (
+            <div className={styles.message_wrapper}>
+                <h2>
+                    Loading...<span className={styles.loader}></span>
+                </h2>
+            </div>
+        );
     }
+
+    if (isError || !product) {
+        return <h2 className={styles.message_wrapper}>Product not found</h2>;
+    }
+
     return (
         <section className={styles.product}>
             <div className={styles.product_image}>
