@@ -4,7 +4,7 @@ import type { Product } from '@/interfaces/Product';
 
 interface CartContextInterface {
     cartData: Product[];
-    handleAddToCart: (item: Product) => void; // Убедитесь, что тип item является Product
+    handleAddToCart: (item: Product) => void;
 }
 
 export const Cart = createContext<CartContextInterface>({
