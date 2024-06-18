@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'; // Імпорт Link для створення переходів
+import { Link } from 'react-router-dom';
 
 import cart from '@/assets/products/Cart.svg';
 import { Cart } from '@/context/Cart';
@@ -16,6 +16,7 @@ interface ProductCardProps {
 export function ProductCard({ productData }: ProductCardProps) {
     const { cartData, handleAddToCart } = useContext(Cart);
     const itemsQty = cartData.filter((item) => item.title === productData.title);
+
     return (
         <div className={styles.product_card}>
             <div className={styles.wrapper}>

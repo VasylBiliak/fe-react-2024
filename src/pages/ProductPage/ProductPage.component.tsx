@@ -82,7 +82,7 @@ export const ProductPage: React.FC = () => {
                 <span className={styles.product_price}>
                     {product.price} <span> ₴</span>
                 </span>
-                <button className={styles.product_buy_button} onClick={() => handleAddToCart(product)}>
+                <button className={styles.product_buy_button} onClick={() => product && handleAddToCart(product)}>
                     <img src={cart} alt="Cart" width="24px" height="24px" />
                     Add to cart
                 </button>
