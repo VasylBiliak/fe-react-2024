@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import clsx from 'clsx';
+
 import cart from '@/assets/header/cart.svg';
 import { Cart } from '@/context/Cart';
 import { fetchProduct } from '@/context/productDataContext';
@@ -64,7 +66,7 @@ export const ProductPage: React.FC = () => {
                     {product.images.map((item) => (
                         <img
                             key={item}
-                            className={`${styles.secondary_image} ${item === imageTitle ? styles.active_image : ''}`}
+                            className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
                             src={item}
                             alt="product"
                             onClick={() => setImageTitle(item)}

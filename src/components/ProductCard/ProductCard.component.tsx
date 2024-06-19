@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import cart from '@/assets/products/Cart.svg';
 import { Cart } from '@/context/Cart';
-import { Component } from '@/interfaces/Component';
 import type { Product } from '@/interfaces/Product';
 
 import headerStyles from '../Header/header.module.css';
@@ -15,15 +14,20 @@ interface ProductCardProps {
 
 export function ProductCard({ productData }: ProductCardProps) {
     const { cartData, handleAddToCart } = useContext(Cart);
+    const navigate = useNavigate();
+
     const itemsQty = cartData.filter((item) => item.title === productData.title);
 
+    function handleOpenProductPage() {
+        navigate(`${productData.id}`);
+    }
     return (
         <div className={styles.product_card}>
             <div className={styles.wrapper}>
-                <NavLink to={`/${Component.PRODUCTS}/${productData.id}`}>
+                <div className={styles.wrapper} onClick={handleOpenProductPage}>
                     <img className={styles.img} src={productData.images[0]} alt="Product" />
                     <h3 className={styles.title}>{productData.title}</h3>
-                </NavLink>
+                </div>
                 <div className={styles.inf}>
                     <div className={styles.price}>
                         {productData.price} <span> ₴</span>
