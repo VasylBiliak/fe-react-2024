@@ -3,13 +3,13 @@ import React, { createContext, useEffect, useState } from 'react';
 import type { Product } from '@/interfaces/Product';
 
 interface ProductsDataContextInterface {
-    productsData: Product[];
+    productsList: Product[];
     isError: boolean;
     isLoading: boolean;
 }
 
 export const ProductsDataContext = createContext<ProductsDataContextInterface>({
-    productsData: [],
+    productsList: [],
     isLoading: true,
     isError: false,
 });
@@ -19,7 +19,7 @@ interface ProductsDataContextProviderProps {
 }
 
 export function ProductsDataContextProvider({ children }: ProductsDataContextProviderProps) {
-    const [productsData, setProductsData] = useState<Product[]>([]);
+    const [productsList, setProductsList] = useState<Product[]>([]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +30,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
             try {
                 if (response.ok) {
                     const data = await response.json();
-                    setProductsData(data);
+                    setProductsList(data.products);
                     setIsError(false);
                     setIsLoading(false);
                 } else {
@@ -44,7 +44,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
     }, []);
 
     const contextValue = {
-        productsData,
+        productsList,
         isError,
         isLoading,
     };

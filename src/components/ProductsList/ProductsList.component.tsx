@@ -5,12 +5,12 @@ import { ProductCard } from '../ProductCard/ProductCard.component';
 import styles from './ProductsList.module.css';
 
 interface ProductsListProps {
-    productsData: any[];
+    productsList: any[];
     isError: boolean;
     isLoading: boolean;
 }
 
-export function ProductsList({ productsData, isError, isLoading }: ProductsListProps) {
+export function ProductsList({ productsList, isError, isLoading }: ProductsListProps) {
     if (isLoading) {
         return <div className={styles.product__event}>Loading...</div>;
     }
@@ -19,13 +19,13 @@ export function ProductsList({ productsData, isError, isLoading }: ProductsListP
         return <div className={styles.product__event}>Error fetching products data...</div>;
     }
 
-    if (productsData.length === 0) {
+    if (productsList.length === 0) {
         return <div className={styles.product__event}>Sorry, no matches found...(</div>;
     }
 
     return (
         <div className={styles.product}>
-            {productsData.map((product) => (
+            {productsList.map((product) => (
                 <ProductCard key={product.id} productData={product} />
             ))}
         </div>

@@ -19,6 +19,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .themes__btn {
@@ -148,7 +149,7 @@
   display: none;
 }
 
-@media (max-width: 870px) {
+@media (max-width: 900px) {
 
   .header {
     padding: 0 30px;
@@ -187,6 +188,11 @@
   .menu_img {
     width: 35px;
     height: 35px;
+  }
+
+  .header__links > *:nth-child(1),
+  .header__links > *:nth-child(2) {
+    display: none;
   }
 
   .header__links > *:nth-child(3) {

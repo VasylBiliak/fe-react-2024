@@ -1,0 +1,42 @@
+.error_text {
+  font-family: var(--main-font);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.error_text__title {
+  color: var(--red-el);
+  margin-bottom: 10px;
+}
+
+.error_text__subtitle {
+  color: var(--grey-2);
+  margin-bottom: 20px;
+}
+
+.error_text__sad_face {
+  font-size: 2em;
+}
+
+.error_text__additional_info {
+  color: var(--grey-1);
+  margin-top: 10px;
+}
+
+.back_button {
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: 1px solid var(--red-el);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--red-el);
+}
+
+.back_button:hover {
+  background-color: transparent;
+  color: var(--red-el);
+}

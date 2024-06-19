@@ -1,0 +1,288 @@
+.product {
+  margin: 60px;
+  padding: 35px 75px;
+  display: flex;
+  align-items: center;
+  gap: 75px;
+  border-radius: 40px;
+  border: 1px solid var(--grey-4);
+  position: relative;
+}
+
+.product_image {
+  display: inherit;
+  align-items: inherit;
+  gap: 15px;
+}
+
+.title_image {
+  width: 355px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.secondary_image {
+  width: 75px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.secondary_images {
+  display: inherit;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.product_txt {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  position: relative;
+}
+
+.product_title,
+.product_price {
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 39px;
+}
+
+.product_category {
+  border-radius: 50px;
+  border: 1px solid var(--grey-4);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color);
+  padding: 10px 20px;
+}
+
+.product_main_text {
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--text-color);
+}
+
+.product_buy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product_price::after {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.product_price > span {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.product_buy_button,
+.button_back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.product_buy_button {
+  border-radius: 40px;
+  padding: 5px 15px;
+  background-color: var(--red-el);
+  border: none;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  width: 150px;
+  bottom: 0;
+  right: 0;
+}
+
+.button_back {
+  padding: 5px 15px;
+  top: 20px;
+  right: 20px;
+  border-radius: 40px;
+  border: 1px solid var(--grey-4);
+  background-color: var(--background-color-alt);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.button_back::before {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.active_image {
+  border: 1px solid var(--color-border-button-dark);
+  scale: 1.2;
+}
+
+@media (max-width: 1020px) {
+
+  .product {
+    margin: 40px;
+    padding: 35px 65px;
+  }
+
+  .product_image {
+    flex-direction: column-reverse;
+  }
+
+  .secondary_images {
+    flex-direction: row;
+  }
+
+  .product_title {
+    font-size: 22px;
+  }
+
+  .main_text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .product {
+    margin: 10px;
+    flex-direction: column;
+    border: none;
+  }
+
+  .title_image {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+  }
+
+  .product_txt {
+    gap: 15px;
+  }
+
+  .product_price {
+    display: inline;
+    order: -1;
+  }
+
+  .product_title {
+    margin: 0 0 10px;
+  }
+
+  .button_back {
+    top: auto;
+    right: auto;
+    bottom: 35px;
+    left: 60px;
+  }
+
+  .product_main_text {
+    padding-bottom: 30px;
+    color: var(--text-color);
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product_category {
+    display: inline-flex;
+    width: max-content;
+  }
+}
+
+@media (max-width: 540px) {
+
+  .product {
+    padding: 15px 25px;
+    gap: 30px;
+  }
+
+  .secondary_image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .button_back {
+    top: auto;
+    right: auto;
+    bottom: 15px;
+    left: 25px;
+  }
+}
+
+
+.message_wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+.loader {
+  width: 74px;
+  height: calc(27px*.866 + 6px);
+  display: grid;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  background: #EF4934FF;
+  --c1: conic-gradient(from 150deg at top,#000 60deg,#0000 0);
+  --c2: conic-gradient(from -30deg at bottom,#000 60deg,#0000 0);
+  --s: 27px calc(27px*.866);
+
+  clip-path: polygon(17px 0,calc(100% - 17px) 0,100% 100%,0 100%);
+  -webkit-mask: var(--c1) left  6px top 4px,
+    var(--c2) center,
+    var(--c1) right 6px top 4px,
+    linear-gradient(to right, #000, #FFF);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  -webkit-mask-repeat: no-repeat;
+  animation: l6 2s infinite both;
+}
+
+.loader::after {
+  transform: rotate(180deg);
+  transform-origin: 50% 99%;
+  animation-delay: .5s;
+}
+
+@keyframes l6 {
+  0% { -webkit-mask-size: 0    0  ,0    0  ,0    0  ,auto}
+  8.33% { -webkit-mask-size: var(--s),0    0  ,0    0  ,auto}
+  16.67% { -webkit-mask-size: var(--s),var(--s),0    0  ,auto}
+
+  25%,
+  50% { -webkit-mask-size: var(--s),var(--s),var(--s),auto}
+  58.33% { -webkit-mask-size: 0    0  ,var(--s),var(--s),auto}
+  66.67% { -webkit-mask-size: 0    0  ,0    0  ,var(--s),auto}
+
+  75%,
+  100% { -webkit-mask-size: 0    0  ,0    0  ,0    0  ,auto}
+}

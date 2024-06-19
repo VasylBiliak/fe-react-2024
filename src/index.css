@@ -2,6 +2,8 @@
   --main-font: "Montserrat", sans-serif;
   --red-el: #EF4934;
   --white: #FFF;
+  --color-border-button-light: #E1E1E1;
+  --color-border-button-dark: #656565;
 }
 
 [data-theme="dark"] {
@@ -13,6 +15,8 @@
   --grey-3: #333;
   --grey-4: #656565;
   --background-color-alt: #111;
+  --color-border-button: var(--color-border-button-light);
+  --color-border-card: var(--color-border-button-light);
 }
 
 [data-theme="light"] {
@@ -25,6 +29,8 @@
   --grey-3: #CCC;
   --grey-4: #E1E1E1;
   --background-color-alt: #FFF;
+  --color-border-button: var(--color-border-button-dark);
+  --color-border-card: var(--color-border-button-dark);
 }
 
 html {
