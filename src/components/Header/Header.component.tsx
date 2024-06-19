@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
 import cart from '@/assets/header/cart.svg';
 import darkIcon from '@/assets/header/dark_active.svg';
@@ -21,8 +21,7 @@ const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 export function Header() {
     let initialTheme: Theme;
     const { cartData } = useContext(Cart);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const productsMatchUrl = useMatch(`${Component.PRODUCTS}`);
 
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;
@@ -36,10 +35,6 @@ export function Header() {
     function handleChangeTheme(themeText: Theme) {
         setTheme(themeText);
         localStorage.setItem('theme', themeText);
-    }
-
-    function isActiveComponent(component: Component): boolean {
-        return location.pathname === component;
     }
 
     return (
@@ -63,18 +58,12 @@ export function Header() {
                 </button>
             </div>
             <nav className={styles.header__links}>
-                <button
-                    className={isActiveComponent(Component.ABOUT) ? styles.header__link_active : styles.header__link}
-                    onClick={() => navigate(Component.ABOUT)}
-                >
+                <NavLink to="" className={productsMatchUrl ? styles.header__link : styles.header__link_active}>
                     About
-                </button>
-                <button
-                    className={isActiveComponent(Component.PRODUCTS) ? styles.header__link_active : styles.header__link}
-                    onClick={() => navigate(Component.PRODUCTS)}
-                >
+                </NavLink>
+                <NavLink to={Component.PRODUCTS} className={productsMatchUrl ? styles.header__link_active : styles.header__link}>
                     Products
-                </button>
+                </NavLink>
                 <button className={`${styles.wrapper_cart} ${styles.cart__link}`} title="Cart">
                     <img src={cart} alt="Cart" width="24px" height="24px" />
                     {cartData && cartData.length > 0 && <span className={styles.product_quantity}>{cartData.length}</span>}
@@ -87,9 +76,9 @@ export function Header() {
                     <img src={userAdd} alt="Add user" className={styles.user_add_img} />
                     <span className={styles.header_btn__text}> Sign up</span>
                 </button>
-                <button className={styles.header__menu_btn} onClick={() => navigate(Component.MENU)}>
+                <NavLink to={Component.MENU} className={styles.header__menu_btn}>
                     <img src={menu} alt="Menu" className={styles.menu_img} />
-                </button>
+                </NavLink>
             </nav>
         </header>
     );

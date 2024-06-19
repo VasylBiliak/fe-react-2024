@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import cart from '@/assets/products/Cart.svg';
 import { Cart } from '@/context/Cart';
@@ -20,10 +20,10 @@ export function ProductCard({ productData }: ProductCardProps) {
     return (
         <div className={styles.product_card}>
             <div className={styles.wrapper}>
-                <Link to={`${Component.PRODUCT_PAGE}/${productData.id}`}>
+                <NavLink to={`/${Component.PRODUCTS}/${productData.id}`}>
                     <img className={styles.img} src={productData.images[0]} alt="Product" />
                     <h3 className={styles.title}>{productData.title}</h3>
-                </Link>
+                </NavLink>
                 <div className={styles.inf}>
                     <div className={styles.price}>
                         {productData.price} <span> ₴</span>

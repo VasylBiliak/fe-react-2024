@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: var(--main-font);
 }
 
 .list_link_active {

@@ -189,6 +189,11 @@
     height: 35px;
   }
 
+  .header__links > *:nth-child(1),
+  .header__links > *:nth-child(2) {
+    display: none;
+  }
+
   .header__links > *:nth-child(3) {
     margin-right: 6px;
   }

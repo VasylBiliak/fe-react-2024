@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
 import darkIcon from '@/assets/header/dark_active.svg';
 import divider from '@/assets/header/divider.svg';
@@ -13,7 +13,9 @@ const htmlElement = document.querySelector('html');
 const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
 
 export function MenuPage() {
+    const productsMatchUrl = useMatch(`${Component.PRODUCTS}`);
     let initialTheme: Theme;
+
     if (localStorage.getItem('theme')) {
         initialTheme = localStorage.getItem('theme') as Theme;
     } else {
@@ -23,32 +25,20 @@ export function MenuPage() {
     const [theme, setTheme] = useState<Theme>(initialTheme);
     htmlElement!.dataset.theme = theme;
 
-    const navigate = useNavigate();
-
     function handleChangeTheme(themeText: Theme) {
         setTheme(themeText);
         localStorage.setItem('theme', themeText);
     }
 
-    function handleNavigate(path: Component) {
-        navigate(path, { replace: true });
-    }
-
     return (
         <section className={styles.wrapper_menu}>
             <nav className={styles.list_links}>
-                <button
-                    className={window.location.pathname === Component.ABOUT ? styles.list_link_active : styles.list_btn}
-                    onClick={() => handleNavigate(Component.ABOUT)}
-                >
+                <NavLink to={`/`} className={productsMatchUrl ? styles.list_link_active : styles.list_btn}>
                     <span className={styles.list_btn__text}>About</span>
-                </button>
-                <button
-                    className={window.location.pathname === Component.PRODUCTS ? styles.list_link_active : styles.list_btn}
-                    onClick={() => handleNavigate(Component.PRODUCTS)}
-                >
+                </NavLink>
+                <NavLink to={`/${Component.PRODUCTS}`} className={productsMatchUrl ? styles.list_link_active : styles.list_btn}>
                     <span className={styles.list_btn__text}>Products</span>
-                </button>
+                </NavLink>
                 <button className={styles.list_btn}>
                     <span className={styles.list_btn__text}>Login</span>
                 </button>
