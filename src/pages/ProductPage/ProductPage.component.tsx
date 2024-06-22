@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import cart from '@/assets/header/cart.svg';
+import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
 import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
 import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
@@ -19,7 +20,7 @@ export const ProductPage: React.FC = () => {
     const { fetchProductById, product, isError, isLoading } = useContext(ProductsDataContext);
 
     useEffect(() => {
-        fetchProductById(id).catch((error) => console.error(error));
+        fetchProductById(id);
     }, [id, fetchProductById]);
 
     useEffect(() => {
@@ -29,26 +30,34 @@ export const ProductPage: React.FC = () => {
     }, [product]);
 
     if (isLoading) {
-        return LoadingMessage();
+        return <LoadingMessage />;
     }
 
     if (isError || !product) {
-        return NoFoundMessage();
+        return <NoFoundMessage />;
+    }
+
+    if (isError) {
+        return <ErrorMessage />;
     }
 
     return (
         <section className={styles.product}>
             <div className={styles.product_image}>
                 <div className={styles.secondary_images}>
-                    {product.images.map((item) => (
-                        <img
-                            key={item}
-                            className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
-                            src={item}
-                            alt="product"
-                            onClick={() => setImageTitle(item)}
-                        />
-                    ))}
+                    {product.images.map(
+                        (
+                            item: string, // Додайте тип для item
+                        ) => (
+                            <img
+                                key={item}
+                                className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
+                                src={item}
+                                alt="product"
+                                onClick={() => setImageTitle(item)}
+                            />
+                        ),
+                    )}
                 </div>
                 <img className={styles.title_image} src={imageTitle} alt="product" />
             </div>

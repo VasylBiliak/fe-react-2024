@@ -9,6 +9,7 @@ interface ProductsDataContextInterface {
     totalProducts: number;
     fetchProducts: (parameters?: { offset: number; sortOrder: string; limit: number; title: string; categoryId: string }) => void;
     fetchProductById: (productId: string | undefined) => Promise<void>;
+    product?: Product;
 }
 
 export const ProductsDataContext = createContext<ProductsDataContextInterface>({
@@ -77,7 +78,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         isLoading,
         fetchProducts,
         totalProducts,
-        product,
+        product, // Додайте це
         fetchProductById,
     };
 
