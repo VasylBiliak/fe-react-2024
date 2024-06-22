@@ -8,38 +8,19 @@ import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
 import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
 import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
-import { fetchProduct } from '@/context/productDataContext';
-import type { Product } from '@/interfaces/Product';
+import { ProductsDataContext } from '@/context/ProductsList';
 
 import styles from './productPage.module.css';
 
 export const ProductPage: React.FC = () => {
-    const { handleAddToCart } = useContext(Cart);
     const { id } = useParams<{ id: string }>();
+    const { handleAddToCart } = useContext(Cart);
     const navigate = useNavigate();
-
-    const [product, setProduct] = useState<Product | null>(null);
     const [imageTitle, setImageTitle] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const { fetchProductById, product, isError, isLoading } = useContext(ProductsDataContext);
 
     useEffect(() => {
-        const getProduct = async (productId: string) => {
-            try {
-                const data = await fetchProduct(productId);
-                setProduct(data);
-                setIsError(false);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-                setIsError(true);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        if (id) {
-            getProduct(id);
-        }
+        fetchProductById(id);
     }, [id]);
 
     useEffect(() => {
