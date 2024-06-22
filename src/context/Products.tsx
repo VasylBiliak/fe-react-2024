@@ -78,7 +78,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         isLoading,
         fetchProducts,
         totalProducts,
-        product, // Додайте це
+        product,
         fetchProductById,
     };
 

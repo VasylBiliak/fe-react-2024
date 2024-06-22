@@ -45,19 +45,15 @@ export const ProductPage: React.FC = () => {
         <section className={styles.product}>
             <div className={styles.product_image}>
                 <div className={styles.secondary_images}>
-                    {product.images.map(
-                        (
-                            item: string, // Додайте тип для item
-                        ) => (
-                            <img
-                                key={item}
-                                className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
-                                src={item}
-                                alt="product"
-                                onClick={() => setImageTitle(item)}
-                            />
-                        ),
-                    )}
+                    {product.images.map((item: string) => (
+                        <img
+                            key={item}
+                            className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
+                            src={item}
+                            alt="product"
+                            onClick={() => setImageTitle(item)}
+                        />
+                    ))}
                 </div>
                 <img className={styles.title_image} src={imageTitle} alt="product" />
             </div>
