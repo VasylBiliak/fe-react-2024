@@ -8,7 +8,7 @@ import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
 import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
 import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
-import { ProductsDataContext } from '@/context/ProductsList';
+import { ProductsDataContext } from '@/context/Products';
 
 import styles from './productPage.module.css';
 
@@ -20,7 +20,17 @@ export const ProductPage: React.FC = () => {
     const { fetchProductById, product, isError, isLoading } = useContext(ProductsDataContext);
 
     useEffect(() => {
-        fetchProductById(id);
+        fetchProductById(id)
+            .then((response) => {
+                if (isLoading) {
+                    return LoadingMessage();
+                }
+            })
+            .catch((error) => {
+                if (error) {
+                    return ErrorMessage();
+                }
+            });
     }, [id]);
 
     useEffect(() => {
@@ -29,16 +39,8 @@ export const ProductPage: React.FC = () => {
         }
     }, [product]);
 
-    if (isLoading) {
-        return LoadingMessage();
-    }
-
     if (isError || !product) {
         return NoFoundMessage();
-    }
-
-    if (isError) {
-        return ErrorMessage();
     }
 
     return (

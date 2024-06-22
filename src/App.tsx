@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { CartContextProvider } from '@/context/Cart';
-import { ProductsDataContextProvider } from '@/context/ProductsList';
+import { ProductsDataContextProvider } from '@/context/Products';
 import { Component } from '@/interfaces/Component';
 
 import { AboutPage } from './components/About/About.component.tsx';

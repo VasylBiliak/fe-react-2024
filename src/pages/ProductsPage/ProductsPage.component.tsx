@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Pagination } from '@/components/Pagination/Pagination.component';
 import { ProductsList } from '@/components/ProductsList/ProductsList.component';
 import { SearchBar } from '@/components/SearchBar/SearchBar.component';
-import { ProductsDataContext } from '@/context/ProductsList';
+import { ProductsDataContext } from '@/context/Products';
 
 import styles from './ProductsPage.module.css';
 
