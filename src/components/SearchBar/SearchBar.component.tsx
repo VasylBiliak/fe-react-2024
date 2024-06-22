@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import searchIcon from '@/assets/products/Search_Magnifying_Glass.svg';
 import { CustomSelector } from '@/components/CustomSelector/CustomSelector';
+import type { Category } from '@/interfaces/Category';
 
 import styles from './SearchBar.module.css';
 
@@ -10,6 +11,14 @@ interface SearchBarProps {
     setSort: (sort: string) => void;
     setSearchQuery: (query: string) => void;
 }
+
+const categories: Readonly<Pick<Category, 'id' | 'name'>[]> = [
+    { id: 1, name: 'Clothes' },
+    { id: 2, name: 'Electronics' },
+    { id: 3, name: 'Furniture' },
+    { id: 4, name: 'Shoes' },
+    { id: 5, name: 'Miscellaneous' },
+];
 
 export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
     const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -44,41 +53,17 @@ export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps
             </form>
 
             <div className={styles.filters}>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilter === '1' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('1')}
-                >
-                    Shoes
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilter === '2' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('2')}
-                >
-                    Electronics
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilter === '3' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('3')}
-                >
-                    Furniture
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilter === '4' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('4')}
-                >
-                    Clothes
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilter === '5' ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('5')}
-                >
-                    Miscellaneous
-                </button>
+                {categories.map((category) => (
+                    <button
+                        key={category.id}
+                        className={`${styles.filter__btn} ${selectedFilter === category.id.toString() ? styles.filters_btn_active : ''}`}
+                        onClick={() => handleFilterChange(category.id.toString())}
+                    >
+                        {category.name}
+                    </button>
+                ))}
             </div>
-            <div className={styles.sort_by}>
-                <span className={styles.sort_by__text}>Sort by:</span>
-                <CustomSelector setSort={setSort} />
-            </div>
+            <CustomSelector setSort={setSort} />
         </section>
     );
 }

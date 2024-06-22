@@ -10,14 +10,14 @@ import styles from './ProductsPage.module.css';
 export function ProductsPage() {
     const { productsList, isError, isLoading, totalProducts, fetchProducts } = useContext(ProductsDataContext);
     const [currentPage, setCurrentPage] = useState(1);
-    const [filters, setFilters] = useState<string>('0');
+    const [categoryNumber, setCategoryNumber] = useState<string>('0');
     const [sort, setSort] = useState<string>('newest');
     const [searchQuery, setSearchQuery] = useState<string>('');
 
-    const itemsPerPage = 7;
+    const itemsPerPage = 8;
 
-    const handleFilterChange = (filter: string) => {
-        setFilters(filter);
+    const handleFilterChange = (number: string) => {
+        setCategoryNumber(number);
         setCurrentPage(1);
     };
 
@@ -25,13 +25,11 @@ export function ProductsPage() {
         fetchProducts({
             limit: itemsPerPage,
             offset: (currentPage - 1) * itemsPerPage,
-            price_min: 0,
-            price_max: 1000,
-            categoryId: filters,
+            categoryId: categoryNumber,
             title: searchQuery,
             sortOrder: sort === 'newest' ? 'asc' : 'desc',
         });
-    }, [currentPage, filters, sort, searchQuery]);
+    }, [currentPage, categoryNumber, sort, searchQuery]);
 
     return (
         <section className={styles.wrapper_list}>

@@ -4,6 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import cart from '@/assets/header/cart.svg';
+import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
+import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
+import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
 import { fetchProduct } from '@/context/productDataContext';
 import type { Product } from '@/interfaces/Product';
@@ -46,17 +49,15 @@ export const ProductPage: React.FC = () => {
     }, [product]);
 
     if (isLoading) {
-        return (
-            <div className={styles.message_wrapper}>
-                <h2>
-                    Loading...<span className={styles.loader}></span>
-                </h2>
-            </div>
-        );
+        return LoadingMessage();
     }
 
     if (isError || !product) {
-        return <h2 className={styles.message_wrapper}>Product not found</h2>;
+        return NoFoundMessage();
+    }
+
+    if (isError) {
+        return ErrorMessage();
     }
 
     return (

@@ -7,14 +7,6 @@ import styles from './CustomSelector.module.css';
 
 const selectors: Selector[] = [
     {
-        title: 'Price (High - Low)',
-        selector: 'highToLow',
-    },
-    {
-        title: 'Price (Low - High)',
-        selector: 'lowToHigh',
-    },
-    {
         title: 'Newest',
         selector: 'newest',
     },
@@ -42,23 +34,26 @@ function CustomSelector({ setSort }: CustomSelectorProps) {
     }
 
     return (
-        <div className={styles.selector}>
-            <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
-                <button
-                    className={`${styles.menu__btn} ${isOpen ? styles.menu__active_btn : ''}`}
-                    onClick={() => setIsOpen((previous) => !previous)}
-                >
-                    {currentSelector.title}
-                    <img src={IconArrowUp} className={isOpen ? styles.menu__icon_up : styles.menu__icon_down} alt="Icon arrow up" />
-                </button>
-                <div className={styles.selector__drop}>
-                    {menuSelectors.map((item) => (
-                        <button key={item.selector} onClick={() => handleChangeSelector(item.selector)}>
-                            {item.title}
-                        </button>
-                    ))}
-                </div>
-            </menu>
+        <div>
+            <span className={styles.sort_by__text}>Sort by:</span>
+            <div className={styles.selector}>
+                <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
+                    <button
+                        className={`${styles.menu__btn} ${isOpen ? styles.menu__active_btn : ''}`}
+                        onClick={() => setIsOpen((previous) => !previous)}
+                    >
+                        {currentSelector.title}
+                        <img src={IconArrowUp} className={isOpen ? styles.menu__icon_up : styles.menu__icon_down} alt="Icon arrow up" />
+                    </button>
+                    <div className={styles.selector__drop}>
+                        {menuSelectors.map((item) => (
+                            <button key={item.selector} onClick={() => handleChangeSelector(item.selector)}>
+                                {item.title}
+                            </button>
+                        ))}
+                    </div>
+                </menu>
+            </div>
         </div>
     );
 }

@@ -7,15 +7,8 @@ interface ProductsDataContextInterface {
     isError: boolean;
     isLoading: boolean;
     totalProducts: number;
-    fetchProducts: (parameters?: {
-        offset: number;
-        sortOrder: string;
-        limit: number;
-        price_min: number;
-        title: string;
-        price_max: number;
-        categoryId: string;
-    }) => void;
+    fetchProducts: (parameters?: { offset: number; sortOrder: string; limit: number; title: string; categoryId: string }) => void;
+    fetchProductById: (productId: string) => Promise<void>;
 }
 
 export const ProductsDataContext = createContext<ProductsDataContextInterface>({
@@ -24,6 +17,7 @@ export const ProductsDataContext = createContext<ProductsDataContextInterface>({
     isError: false,
     totalProducts: 0,
     fetchProducts: () => {},
+    fetchProductById: async () => {},
 });
 
 interface ProductsDataContextProviderProps {
@@ -57,12 +51,32 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         }
     };
 
+    const fetchProductById = async (productId: string) => {
+        setIsLoading(true);
+        try {
+            const response = await fetch(`https://ma-backend-api.mocintra.com/api/v1/products/${productId}`);
+            if (response.ok) {
+                const data = await response.json();
+                setProductsList([data]);
+                setIsError(false);
+            } else {
+                setIsError(true);
+            }
+        } catch (error) {
+            console.error(error);
+            setIsError(true);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const contextValue = {
         productsList,
         isError,
         isLoading,
         fetchProducts,
         totalProducts,
+        fetchProductById,
     };
 
     return <ProductsDataContext.Provider value={contextValue}>{children}</ProductsDataContext.Provider>;
