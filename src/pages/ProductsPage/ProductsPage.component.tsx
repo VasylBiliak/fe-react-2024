@@ -29,7 +29,7 @@ export function ProductsPage() {
             title: searchQuery,
             sortOrder: sort === 'newest' ? 'asc' : 'desc',
         });
-    }, [currentPage, categoryNumber, sort, searchQuery]);
+    }, [currentPage, categoryNumber, sort, searchQuery, fetchProducts]);
 
     return (
         <section className={styles.wrapper_list}>

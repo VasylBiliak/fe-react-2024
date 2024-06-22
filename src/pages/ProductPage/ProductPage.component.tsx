@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import cart from '@/assets/header/cart.svg';
-import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
 import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
 import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
@@ -20,24 +19,18 @@ export const ProductPage: React.FC = () => {
     const { fetchProductById, product, isError, isLoading } = useContext(ProductsDataContext);
 
     useEffect(() => {
-        fetchProductById(id)
-            .then((response) => {
-                if (isLoading) {
-                    return LoadingMessage();
-                }
-            })
-            .catch((error) => {
-                if (error) {
-                    return ErrorMessage();
-                }
-            });
-    }, [id]);
+        fetchProductById(id).catch((error) => console.error(error));
+    }, [id, fetchProductById]);
 
     useEffect(() => {
         if (product) {
             setImageTitle(product.images[0]);
         }
     }, [product]);
+
+    if (isLoading) {
+        return LoadingMessage();
+    }
 
     if (isError || !product) {
         return NoFoundMessage();

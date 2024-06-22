@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useCallback, useState } from 'react';
 
 import type { Product } from '@/interfaces/Product';
 
@@ -31,7 +31,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    const fetchProducts = async (parameters: Record<string, string | number> = {}) => {
+    const fetchProducts = useCallback(async (parameters: Record<string, string | number> = {}) => {
         setIsLoading(true);
         const query = new URLSearchParams(parameters as any).toString();
         try {
@@ -50,9 +50,9 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         } finally {
             setIsLoading(false);
         }
-    };
+    }, []);
 
-    const fetchProductById = async (productId: string) => {
+    const fetchProductById = useCallback(async (productId: string | undefined) => {
         setIsLoading(true);
         try {
             const response = await fetch(`https://ma-backend-api.mocintra.com/api/v1/products/${productId}`);
@@ -69,7 +69,7 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         } finally {
             setIsLoading(false);
         }
-    };
+    }, []);
 
     const contextValue = {
         productsList,
