@@ -12,11 +12,12 @@ interface ProductsListProps {
     productsList: any[];
     isError: boolean;
     isLoading: boolean;
+    isMobile: boolean;
 }
 
-export function ProductsList({ productsList, isError, isLoading }: ProductsListProps) {
+export function ProductsList({ productsList, isError, isLoading, isMobile }: ProductsListProps) {
     if (isLoading) {
-        return LoadingMessage();
+        return isMobile ? <></> : LoadingMessage();
     }
 
     if (isError) {
@@ -29,7 +30,7 @@ export function ProductsList({ productsList, isError, isLoading }: ProductsListP
 
     return (
         <div className={styles.product}>
-            {productsList.map((product) => (
+            {productsList.map((product, index) => (
                 <ProductCard key={product.id} productData={product} />
             ))}
         </div>
