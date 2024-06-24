@@ -4,6 +4,7 @@ import { Pagination } from '@/components/Pagination/Pagination.component';
 import { ProductsList } from '@/components/ProductsList/ProductsList.component';
 import { SearchBar } from '@/components/SearchBar/SearchBar.component';
 import { ProductsDataContext } from '@/context/Products';
+import type { Product } from '@/interfaces/Product';
 
 import styles from './ProductsPage.module.css';
 
@@ -17,7 +18,7 @@ export function ProductsPage() {
     const [categoryNumber, setCategoryNumber] = useState<string>('0');
     const [sort, setSort] = useState<string>('newest');
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
     const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_WIDTH);
     const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
 
