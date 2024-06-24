@@ -26,8 +26,7 @@ const getPagination = (page: number, totalPages: number): number[] => {
     }
 };
 
-export const Pagination: React.FC<PaginationProps> = ({ page, limit, total, setCurrentPage }) => {
-    const totalPages = Math.ceil(total / limit);
+export const Pagination: React.FC<PaginationProps> = ({ page, totalPages, setCurrentPage }) => {
     if (totalPages === 0) {
         return <></>;
     }

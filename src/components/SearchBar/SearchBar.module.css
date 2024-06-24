@@ -59,20 +59,6 @@
   font-weight: 700;
 }
 
-.sort_by {
-  display: grid;
-  grid-template-columns: auto 1fr ;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-}
-
-.sort_by__text {
-  width: 60px;
-  color: var(--text-color);
-  white-space: nowrap;
-}
-
 .sort_by__select {
   background: var(--red-el);
   color: #FFF;

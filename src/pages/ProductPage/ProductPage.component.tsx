@@ -4,40 +4,24 @@ import { useNavigate, useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
 import cart from '@/assets/header/cart.svg';
+import { ErrorMessage } from '@/components/Messages/ErrorMessage.component';
+import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
+import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 import { Cart } from '@/context/Cart';
-import { fetchProduct } from '@/context/productDataContext';
-import type { Product } from '@/interfaces/Product';
+import { ProductsDataContext } from '@/context/Products';
 
 import styles from './productPage.module.css';
 
 export const ProductPage: React.FC = () => {
-    const { handleAddToCart } = useContext(Cart);
     const { id } = useParams<{ id: string }>();
+    const { handleAddToCart } = useContext(Cart);
     const navigate = useNavigate();
-
-    const [product, setProduct] = useState<Product | null>(null);
     const [imageTitle, setImageTitle] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const { fetchProductById, product, isError, isLoading } = useContext(ProductsDataContext);
 
     useEffect(() => {
-        const getProduct = async (productId: string) => {
-            try {
-                const data = await fetchProduct(productId);
-                setProduct(data);
-                setIsError(false);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-                setIsError(true);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        if (id) {
-            getProduct(id);
-        }
-    }, [id]);
+        fetchProductById(id);
+    }, [id, fetchProductById]);
 
     useEffect(() => {
         if (product) {
@@ -46,24 +30,22 @@ export const ProductPage: React.FC = () => {
     }, [product]);
 
     if (isLoading) {
-        return (
-            <div className={styles.message_wrapper}>
-                <h2>
-                    Loading...<span className={styles.loader}></span>
-                </h2>
-            </div>
-        );
+        return <LoadingMessage />;
     }
 
     if (isError || !product) {
-        return <h2 className={styles.message_wrapper}>Product not found</h2>;
+        return <NoFoundMessage />;
+    }
+
+    if (isError) {
+        return <ErrorMessage />;
     }
 
     return (
         <section className={styles.product}>
             <div className={styles.product_image}>
                 <div className={styles.secondary_images}>
-                    {product.images.map((item) => (
+                    {product.images.map((item: string) => (
                         <img
                             key={item}
                             className={clsx(styles.secondary_image, { [styles.active_image]: item === imageTitle })}
