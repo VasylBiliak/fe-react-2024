@@ -1,6 +1,12 @@
 import React, { createContext, useCallback, useState } from 'react';
 
+import axios from 'axios';
+
 import type { Product } from '@/interfaces/Product';
+
+const api = axios.create({
+    baseURL: 'https://ma-backend-api.mocintra.com/api/v1/',
+});
 
 interface ProductsDataContextInterface {
     productsList: Product[];
@@ -36,15 +42,11 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         setIsLoading(true);
         const query = new URLSearchParams(parameters as any).toString();
         try {
-            const response = await fetch(`https://ma-backend-api.mocintra.com/api/v1/products?${query}`);
-            if (response.ok) {
-                const data = await response.json();
-                setProductsList(data.products);
-                setTotalProducts(data.total);
-                setIsError(false);
-            } else {
-                setIsError(true);
-            }
+            const response = await api.get(`products?${query}`);
+            const data = response.data;
+            setProductsList(data.products);
+            setTotalProducts(data.total);
+            setIsError(false);
         } catch (error) {
             console.error(error);
             setIsError(true);
@@ -56,14 +58,10 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
     const fetchProductById = useCallback(async (productId: string | undefined) => {
         setIsLoading(true);
         try {
-            const response = await fetch(`https://ma-backend-api.mocintra.com/api/v1/products/${productId}`);
-            if (response.ok) {
-                const data = await response.json();
-                setProduct(data);
-                setIsError(false);
-            } else {
-                setIsError(true);
-            }
+            const response = await api.get(`products/${productId}`);
+            const data = response.data;
+            setProduct(data);
+            setIsError(false);
         } catch (error) {
             console.error(error);
             setIsError(true);
