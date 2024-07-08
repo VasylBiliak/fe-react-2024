@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import clsx from 'clsx';
+
 import searchIcon from '@/assets/products/Search_Magnifying_Glass.svg';
 import { CustomSelector } from '@/components/CustomSelector/CustomSelector';
 import type { Category } from '@/interfaces/Category';
@@ -25,8 +27,13 @@ export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps
     const [searchInput, setSearchInput] = useState<string>('');
 
     const handleFilterChange = (filterID: string) => {
+        if (selectedFilter === filterID) {
+            setSelectedFilter('0');
+            setFilter('0');
+            return;
+        }
         setSelectedFilter(filterID);
-        return setFilter(filterID);
+        setFilter(filterID);
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +47,7 @@ export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps
     return (
         <section className={styles.filters_bar}>
             <form
+                autoComplete="off"
                 className={styles.filters_bar__search}
                 onSubmit={(event) => {
                     event.preventDefault();
@@ -56,7 +64,9 @@ export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps
                 {categories.map((category) => (
                     <button
                         key={category.id}
-                        className={`${styles.filter__btn} ${selectedFilter === category.id.toString() ? styles.filters_btn_active : ''}`}
+                        className={clsx(styles.filter__btn, {
+                            [styles.filters_btn_active]: selectedFilter === category.id.toString(),
+                        })}
                         onClick={() => handleFilterChange(category.id.toString())}
                     >
                         {category.name}

@@ -47,6 +47,7 @@ body {
 .app_container {
   display: grid;
   grid-template-columns: 1fr;
+  padding-top: 80px;
 }
 
 .app_container__header {
@@ -54,7 +55,6 @@ body {
 }
 
 .app_container__main {
-  padding-top: 30px;
   min-height: calc(100vh - 80px);
 }
 

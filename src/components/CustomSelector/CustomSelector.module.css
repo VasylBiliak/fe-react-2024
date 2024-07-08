@@ -1,10 +1,4 @@
-.selector {
-  position: relative;
-  display: inline-block;
-  width: 200px;
-}
-
-.sort_by {
+.selector_wraper {
   display: grid;
   grid-template-columns: auto 1fr ;
   align-items: center;
