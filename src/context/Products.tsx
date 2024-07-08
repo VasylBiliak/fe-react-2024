@@ -1,8 +1,11 @@
 import React, { createContext, useCallback, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 import axios from 'axios';
 
 import type { Product } from '@/interfaces/Product';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const api = axios.create({
     baseURL: 'https://ma-backend-api.mocintra.com/api/v1/',
@@ -30,6 +33,15 @@ export const ProductsDataContext = createContext<ProductsDataContextInterface>({
 interface ProductsDataContextProviderProps {
     children: React.ReactNode;
 }
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        const message = error.response?.data?.message || error.message || 'An error occurred';
+        toast.error(message);
+        return Promise.reject(error);
+    },
+);
 
 export function ProductsDataContextProvider({ children }: ProductsDataContextProviderProps) {
     const [productsList, setProductsList] = useState<Product[]>([]);
@@ -80,5 +92,10 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         fetchProductById,
     };
 
-    return <ProductsDataContext.Provider value={contextValue}>{children}</ProductsDataContext.Provider>;
+    return (
+        <ProductsDataContext.Provider value={contextValue}>
+            {children}
+            <ToastContainer />
+        </ProductsDataContext.Provider>
+    );
 }
