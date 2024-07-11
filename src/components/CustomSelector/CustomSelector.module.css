@@ -1,4 +1,4 @@
-.selector_wraper {
+.selector_wrapper {
   display: grid;
   grid-template-columns: auto 1fr ;
   align-items: center;
@@ -26,7 +26,6 @@
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%;
   overflow: hidden;
   margin-top: -20px;
 }

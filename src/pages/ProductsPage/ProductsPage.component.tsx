@@ -6,8 +6,6 @@ import { SearchBar } from '@/components/SearchBar/SearchBar.component';
 import { ProductsDataContext } from '@/context/Products';
 import type { Product } from '@/interfaces/Product';
 
-import styles from './ProductsPage.module.css';
-
 const MOBILE_WIDTH = 900;
 const SCROLL_THRESHOLD = 150;
 const ITEMS_PER_PAGE = 8;
@@ -77,7 +75,7 @@ export function ProductsPage() {
     }, [isMobile, handleScroll]);
 
     return (
-        <section className={styles.wrapper_list}>
+        <section>
             <SearchBar setFilter={handleFilterChange} setSort={setSort} setSearchQuery={setSearchQuery} />
             <ProductsList productsList={products} isError={isError} isLoading={isLoading} isMobile={isMobile} />
             {!isMobile && <Pagination page={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />}

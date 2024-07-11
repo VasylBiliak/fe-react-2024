@@ -34,7 +34,7 @@ function CustomSelector({ setSort }: CustomSelectorProps) {
     }
 
     return (
-        <div className={styles.selector_wraper}>
+        <div className={styles.selector_wrapper}>
             <span className={styles.sort_by__text}>Sort by:</span>
             <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
                 <button
