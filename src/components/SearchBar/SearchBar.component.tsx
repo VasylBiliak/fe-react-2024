@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
+import clsx from 'clsx';
+
 import searchIcon from '@/assets/products/Search_Magnifying_Glass.svg';
 import { CustomSelector } from '@/components/CustomSelector/CustomSelector';
+import type { Category } from '@/interfaces/Category';
 
 import styles from './SearchBar.module.css';
 
@@ -11,15 +14,26 @@ interface SearchBarProps {
     setSearchQuery: (query: string) => void;
 }
 
-function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
-    const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+const categories: Readonly<Pick<Category, 'id' | 'name'>[]> = [
+    { id: 1, name: 'Clothes' },
+    { id: 2, name: 'Electronics' },
+    { id: 3, name: 'Furniture' },
+    { id: 4, name: 'Shoes' },
+    { id: 5, name: 'Miscellaneous' },
+];
+
+export function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
+    const [selectedFilter, setSelectedFilter] = useState<string>('');
     const [searchInput, setSearchInput] = useState<string>('');
 
-    const handleFilterChange = (filter: string) => {
-        setSelectedFilters((previousFilters) =>
-            previousFilters.includes(filter) ? previousFilters.filter((f) => f !== filter) : [...previousFilters, filter],
-        );
-        setFilter(filter);
+    const handleFilterChange = (filterID: string) => {
+        if (selectedFilter === filterID) {
+            setSelectedFilter('0');
+            setFilter('0');
+            return;
+        }
+        setSelectedFilter(filterID);
+        setFilter(filterID);
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +47,7 @@ function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
     return (
         <section className={styles.filters_bar}>
             <form
+                autoComplete="off"
                 className={styles.filters_bar__search}
                 onSubmit={(event) => {
                     event.preventDefault();
@@ -46,31 +61,19 @@ function SearchBar({ setFilter, setSort, setSearchQuery }: SearchBarProps) {
             </form>
 
             <div className={styles.filters}>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilters.includes('Electronics') ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('Electronics')}
-                >
-                    Electronics
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilters.includes('Shoes') ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('Shoes')}
-                >
-                    Shoes
-                </button>
-                <button
-                    className={`${styles.filter__btn} ${selectedFilters.includes('Clothes') ? styles.filters_btn_active : ''}`}
-                    onClick={() => handleFilterChange('Clothes')}
-                >
-                    Clothes
-                </button>
+                {categories.map((category) => (
+                    <button
+                        key={category.id}
+                        className={clsx(styles.filter__btn, {
+                            [styles.filters_btn_active]: selectedFilter === category.id.toString(),
+                        })}
+                        onClick={() => handleFilterChange(category.id.toString())}
+                    >
+                        {category.name}
+                    </button>
+                ))}
             </div>
-            <div className={styles.sort_by}>
-                <span className={styles.sort_by__text}>Sort by:</span>
-                <CustomSelector setSort={setSort} />
-            </div>
+            <CustomSelector setSort={setSort} />
         </section>
     );
 }
-
-export { SearchBar };

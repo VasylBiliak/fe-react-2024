@@ -7,14 +7,6 @@ import styles from './CustomSelector.module.css';
 
 const selectors: Selector[] = [
     {
-        title: 'Price (High - Low)',
-        selector: 'highToLow',
-    },
-    {
-        title: 'Price (Low - High)',
-        selector: 'lowToHigh',
-    },
-    {
         title: 'Newest',
         selector: 'newest',
     },
@@ -42,7 +34,8 @@ function CustomSelector({ setSort }: CustomSelectorProps) {
     }
 
     return (
-        <div className={styles.selector}>
+        <div className={styles.selector_wrapper}>
+            <span className={styles.sort_by__text}>Sort by:</span>
             <menu className={`${styles.selector__menu} ${isOpen ? styles.selector__open : ''}`}>
                 <button
                     className={`${styles.menu__btn} ${isOpen ? styles.menu__active_btn : ''}`}
