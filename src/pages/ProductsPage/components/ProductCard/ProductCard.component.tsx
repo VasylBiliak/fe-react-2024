@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import cart from '@/assets/products/Cart.svg';
+import headerStyles from '@/components/Header/header.module.css';
 import { Cart } from '@/context/Cart';
 import type { Product } from '@/interfaces/Product';
 
-import headerStyles from '../Header/header.module.css';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {

@@ -1,17 +1,24 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Pagination } from '@/components/Pagination/Pagination.component';
-import { ProductsList } from '@/components/ProductsList/ProductsList.component';
-import { SearchBar } from '@/components/SearchBar/SearchBar.component';
-import { ProductsDataContext } from '@/context/Products';
 import type { Product } from '@/interfaces/Product';
+import { selectIsError, selectIsLoading, selectProducts, selectTotalProducts } from '@/store/products/slice';
+import { fetchProducts } from '@/store/products/thunks';
+
+import { Pagination } from './components/Pagination/Pagination.component';
+import { ProductsList } from './components/ProductsList/ProductsList.component';
+import { SearchBar } from './components/SearchBar/SearchBar.component';
 
 const MOBILE_WIDTH = 900;
 const SCROLL_THRESHOLD = 150;
 const ITEMS_PER_PAGE = 8;
 
 export function ProductsPage() {
-    const { productsList, isError, isLoading, totalProducts, fetchProducts } = useContext(ProductsDataContext);
+    const dispatch = useDispatch();
+    const productsList = useSelector(selectProducts);
+    const isError = useSelector(selectIsError);
+    const isLoading = useSelector(selectIsLoading);
+    const totalProducts = useSelector(selectTotalProducts);
     const [currentPage, setCurrentPage] = useState(1);
     const [categoryNumber, setCategoryNumber] = useState<string>('0');
     const [sort, setSort] = useState<string>('newest');
@@ -32,14 +39,16 @@ export function ProductsPage() {
     }, []);
 
     useEffect(() => {
-        fetchProducts({
-            limit: ITEMS_PER_PAGE,
-            offset: (currentPage - 1) * ITEMS_PER_PAGE,
-            categoryId: categoryNumber,
-            title: searchQuery,
-            sortOrder: sort === 'newest' ? 'asc' : 'desc',
-        });
-    }, [currentPage, categoryNumber, sort, searchQuery, fetchProducts]);
+        dispatch(
+            fetchProducts({
+                limit: ITEMS_PER_PAGE,
+                offset: (currentPage - 1) * ITEMS_PER_PAGE,
+                categoryId: categoryNumber,
+                title: searchQuery,
+                sortOrder: sort === 'newest' ? 'asc' : 'desc',
+            }),
+        );
+    }, [currentPage, categoryNumber, sort, searchQuery, dispatch]);
 
     useEffect(() => {
         if (isMobile) {
@@ -61,7 +70,7 @@ export function ProductsPage() {
             !isLoading &&
             currentPage < totalPages
         ) {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage((previousPage) => previousPage + 1);
         }
     }, [isLoading, currentPage, totalPages]);
 
