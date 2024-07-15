@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
-import { Pagination } from '@/components/Pagination/Pagination.component';
-import { ProductsList } from '@/components/ProductsList/ProductsList.component';
-import { SearchBar } from '@/components/SearchBar/SearchBar.component';
 import { ProductsDataContext } from '@/context/Products';
 import type { Product } from '@/interfaces/Product';
+import { Pagination } from '@/pages/Products/Pagination/Pagination.component';
+import { ProductsList } from '@/pages/Products/ProductsList/ProductsList.component';
+import { SearchBar } from '@/pages/Products/SearchBar/SearchBar.component';
 
 const MOBILE_WIDTH = 900;
 const SCROLL_THRESHOLD = 150;

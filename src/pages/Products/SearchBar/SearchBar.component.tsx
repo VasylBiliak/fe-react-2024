@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import searchIcon from '@/assets/products/Search_Magnifying_Glass.svg';
-import { CustomSelector } from '@/components/CustomSelector/CustomSelector';
 import type { Category } from '@/interfaces/Category';
+
+import { CustomSelector } from '../CustomSelector/CustomSelector';
 
 import styles from './SearchBar.module.css';
 
