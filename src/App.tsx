@@ -3,13 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import { CartContextProvider } from '@/context/Cart';
 import { ProductsDataContextProvider } from '@/context/Products';
 import { Component } from '@/interfaces/Component';
+import { AboutPage } from '@/pages/About/About.component';
 
-import { AboutPage } from './components/About/About.component.tsx';
 import { LayoutPage } from './components/Layout/Layout.component';
 import { MenuPage } from './components/Menu/Menu.component';
 import { PageNotFound } from './pages/PageNotFound/PageNotFound.component';
-import { ProductPage } from './pages/ProductPage/ProductPage.component';
-import { ProductsPage } from './pages/ProductsPage/ProductsPage.component';
+import { ProductPage } from './pages/Product/ProductPage.component';
+import { ProductsPage } from './pages/Products/ProductsPage.component';
 
 function App() {
     return (
