@@ -1,0 +1,391 @@
+{
+        "cards": [
+            {
+                "id": 1,
+                "title": "Sleek Mirror Finish Phone Case",
+                "price": 27,
+                "description": "Enhance your smartphone's look with this ultra-sleek mirror finish phone case.",
+                "images": ["https://i.imgur.com/yb9UQKL.jpeg"],
+                "creationAt": "2024-05-01T05:05:28.404Z",
+                "updatedAt": "2024-05-01T05:05:28.404Z",
+                "category": {
+                    "id": 2,
+                    "name": "Electronics",
+                    "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                    "creationAt": "2024-05-01T05:05:28.330Z",
+                    "updatedAt": "2024-05-01T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 2,
+                "title": "Classic Red Pullover Hoodie",
+                "price": 10,
+                "description": "Elevate your casual wardrobe with our Classic Red Pullover Hoodie.",
+                "images": ["https://i.imgur.com/1twoaDy.jpeg"],
+                "creationAt": "2024-05-02T05:05:28.404Z",
+                "updatedAt": "2024-05-02T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-02T05:05:28.330Z",
+                    "updatedAt": "2024-05-02T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 3,
+                "title": "Classic Heather Gray Hoodie",
+                "price": 69,
+                "description": "Stay cozy and stylish with our Classic Heather Gray Hoodie.",
+                "images": ["https://i.imgur.com/cHddUCu.jpeg"],
+                "creationAt": "2024-05-03T05:05:28.404Z",
+                "updatedAt": "2024-05-03T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-03T05:05:28.330Z",
+                    "updatedAt": "2024-05-03T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 4,
+                "title": "Classic Grey Hooded Sweatshirt",
+                "price": 90,
+                "description": "Elevate your casual wear with our Classic Grey Hooded Sweatshirt.",
+                "images": ["https://i.imgur.com/R2PN9Wq.jpeg"],
+                "creationAt": "2024-05-04T05:05:28.404Z",
+                "updatedAt": "2024-05-04T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-04T05:05:28.330Z",
+                    "updatedAt": "2024-05-04T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 5,
+                "title": "Classic Black Hooded Sweatshirt",
+                "price": 79,
+                "description": "Elevate your casual wardrobe with our Classic Black Hooded Sweatshirt.",
+                "images": ["https://i.imgur.com/cSytoSD.jpeg"],
+                "creationAt": "2024-05-05T05:05:28.404Z",
+                "updatedAt": "2024-05-05T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-05T05:05:28.330Z",
+                    "updatedAt": "2024-05-05T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 6,
+                "title": "Classic Comfort Fit Joggers",
+                "price": 25,
+                "description": "Discover the perfect blend of style and comfort with our Classic Comfort Fit Joggers.",
+                "images": ["https://i.imgur.com/ZKGofuB.jpeg"],
+                "creationAt": "2024-05-06T05:05:28.404Z",
+                "updatedAt": "2024-05-06T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-06T05:05:28.330Z",
+                    "updatedAt": "2024-05-06T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 7,
+                "title": "Classic Comfort Drawstring Joggers",
+                "price": 79,
+                "description": "Experience the perfect blend of comfort and style with our Classic Comfort Drawstring Joggers.",
+                "images": ["https://i.imgur.com/mp3rUty.jpeg"],
+                "creationAt": "2024-05-07T05:05:28.404Z",
+                "updatedAt": "2024-05-07T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-07T05:05:28.330Z",
+                    "updatedAt": "2024-05-07T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 8,
+                "title": "Classic Red Jogger Sweatpants",
+                "price": 98,
+                "description": "Experience ultimate comfort with our red jogger sweatpants.",
+                "images": ["https://i.imgur.com/9LFjwpI.jpeg"],
+                "creationAt": "2024-05-08T05:05:28.404Z",
+                "updatedAt": "2024-05-08T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-08T05:05:28.330Z",
+                    "updatedAt": "2024-05-08T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 9,
+                "title": "Classic Navy Blue Baseball Cap",
+                "price": 61,
+                "description": "Step out in style with this sleek navy blue baseball cap.",
+                "images": ["https://i.imgur.com/R3iobJA.jpeg"],
+                "creationAt": "2024-05-09T05:05:28.404Z",
+                "updatedAt": "2024-05-09T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-09T05:05:28.330Z",
+                    "updatedAt": "2024-05-09T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 10,
+                "title": "Classic Blue Baseball Cap",
+                "price": 86,
+                "description": "Top off your casual look with our Classic Blue Baseball Cap.",
+                "images": ["https://i.imgur.com/wXuQ7bm.jpeg"],
+                "creationAt": "2024-05-10T05:05:28.404Z",
+                "updatedAt": "2024-05-10T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-10T05:05:28.330Z",
+                    "updatedAt": "2024-05-10T05:05:28.330Z"
+                }
+            }, 
+            {
+                "id": 12,
+                "title": "Classic Black Baseball Cap",
+                "price": 58,
+                "description": "Elevate your casual wear with this timeless black baseball cap. Made with high-quality, breathable fabric, it features an adjustable strap for the perfect fit. Whether you’re out for a jog or just running errands, this cap adds a touch of style to any outfit.",
+                "images": [
+                    "https://i.imgur.com/KeqG6r4.jpeg",
+                    "https://i.imgur.com/xGQOw3p.jpeg",
+                    "https://i.imgur.com/oO5OUjb.jpeg"
+                ],
+                "creationAt": "2024-05-12T05:05:28.404Z",
+                "updatedAt": "2024-05-12T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-12T05:05:28.330Z",
+                    "updatedAt": "2024-05-12T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 13,
+                "title": "Classic Olive Chino Shorts",
+                "price": 84,
+                "description": "Elevate your casual wardrobe with these classic olive chino shorts. Designed for comfort and versatility, they feature a smooth waistband, practical pockets, and a tailored fit that makes them perfect for both relaxed weekends and smart-casual occasions.",
+                "images": [
+                    "https://i.imgur.com/UsFIvYs.jpeg",
+                    "https://i.imgur.com/YIq57b6.jpeg"
+                ],
+                "creationAt": "2024-05-13T05:05:28.404Z",
+                "updatedAt": "2024-05-13T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-13T05:05:28.330Z",
+                    "updatedAt": "2024-05-13T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 14,
+                "title": "Classic High-Waisted Athletic Shorts",
+                "price": 43,
+                "description": "Stay comfortable and stylish with our Classic High-Waisted Athletic Shorts. Designed for optimal movement and versatility, these shorts are a must-have for your workout wardrobe.",
+                "images": [
+                    "https://i.imgur.com/eGOUveI.jpeg",
+                    "https://i.imgur.com/UcsGO7E.jpeg",
+                    "https://i.imgur.com/NLn4e7S.jpeg"
+                ],
+                "creationAt": "2024-05-14T05:05:28.404Z",
+                "updatedAt": "2024-05-14T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-14T05:05:28.330Z",
+                    "updatedAt": "2024-05-14T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 15,
+                "title": "Classic White Crew Neck T-Shirt",
+                "price": 39,
+                "description": "Elevate your basics with this versatile white crew neck tee. Made from a soft, breathable cotton blend, it offers both comfort and durability.",
+                "images": [
+                    "https://i.imgur.com/axsyGpD.jpeg",
+                    "https://i.imgur.com/T8oq9X2.jpeg",
+                    "https://i.imgur.com/J6MinJn.jpeg"
+                ],
+                "creationAt": "2024-05-15T05:05:28.404Z",
+                "updatedAt": "2024-05-15T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-15T05:05:28.330Z",
+                    "updatedAt": "2024-05-15T05:05:28.330Z"
+                }
+            },
+            {
+                "id": 16,
+                "title": "Classic White Tee - Timeless Style and Comfort",
+                "price": 73,
+                "description": "Elevate your everyday wardrobe with our Classic White Tee. Crafted from premium soft cotton material, this versatile t-shirt combines comfort with durability.",
+                "images": [
+                    "https://i.imgur.com/Y54Bt8J.jpeg",
+                    "https://i.imgur.com/SZPDSgy.jpeg",
+                    "https://i.imgur.com/sJv4Xx0.jpeg"
+                ],
+                "creationAt": "2024-05-16T05:05:28.404Z",
+                "updatedAt": "2024-05-16T05:05:28.404Z",
+                "category": {
+                    "id": 1,
+                    "name": "Clothes",
+                    "image": "https://i.imgur.com/QkIa5tT.jpeg",
+                    "creationAt": "2024-05-16T05:05:28.330Z",
+                    "updatedAt": "2024-05-16T05:05:28.330Z"
+                }
+            },                
+        {
+            "id": 18,
+            "title": "Sleek White & Orange Wireless Gaming Controller",
+            "price": 69,
+            "description": "Elevate your gaming experience with this state-of-the-art wireless controller, featuring a crisp white base with vibrant orange accents. Designed for precision play, the ergonomic shape and responsive buttons provide maximum comfort and control for endless hours of gameplay. Compatible with multiple gaming platforms, this controller is a must-have for any serious gamer looking to enhance their setup.",
+            "images": ["https://i.imgur.com/ZANVnHE.jpeg", "https://i.imgur.com/Ro5z6Tn.jpeg", "https://i.imgur.com/woA93Li.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 19,
+            "title": "Sleek Wireless Headphone & Inked Earbud Set",
+            "price": 44,
+            "description": "Experience the fusion of style and sound with this sophisticated audio set featuring a pair of sleek, white wireless headphones offering crystal-clear sound quality and over-ear comfort. The set also includes a set of durable earbuds, perfect for an on-the-go lifestyle. Elevate your music enjoyment with this versatile duo, designed to cater to all your listening needs.",
+            "images": ["https://i.imgur.com/yVeIeDa.jpeg", "https://i.imgur.com/jByJ4ih.jpeg", "https://i.imgur.com/KXj6Tpb.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 20,
+            "title": "Sleek Comfort-Fit Over-Ear Headphones",
+            "price": 28,
+            "description": "Experience superior sound quality with our Sleek Comfort-Fit Over-Ear Headphones, designed for prolonged use with cushioned ear cups and an adjustable, padded headband. Ideal for immersive listening, whether you're at home, in the office, or on the move. Their durable construction and timeless design provide both aesthetically pleasing looks and long-lasting performance.",
+            "images": ["https://i.imgur.com/SolkFEB.jpeg", "https://i.imgur.com/KIGW49u.jpeg", "https://i.imgur.com/mWwek7p.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 21,
+            "title": "Efficient 2-Slice Toaster",
+            "price": 48,
+            "description": "Enhance your morning routine with our sleek 2-slice toaster, featuring adjustable browning controls and a removable crumb tray for easy cleaning. This compact and stylish appliance is perfect for any kitchen, ensuring your toast is always golden brown and delicious.",
+            "images": ["https://i.imgur.com/keVCVIa.jpeg", "https://i.imgur.com/afHY7v2.jpeg", "https://i.imgur.com/yAOihUe.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 22,
+            "title": "Sleek Wireless Computer Mouse",
+            "price": 10,
+            "description": "Experience smooth and precise navigation with this modern wireless mouse, featuring a glossy finish and a comfortable ergonomic design. Its responsive tracking and easy-to-use interface make it the perfect accessory for any desktop or laptop setup. The stylish blue hue adds a splash of color to your workspace, while its compact size ensures it fits neatly in your bag for on-the-go productivity.",
+            "images": ["https://i.imgur.com/w3Y8NwQ.jpeg", "https://i.imgur.com/WJFOGIC.jpeg", "https://i.imgur.com/dV4Nklf.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 23,
+            "title": "Sleek Modern Laptop with Ambient Lighting",
+            "price": 43,
+            "description": "Experience next-level computing with our ultra-slim laptop, featuring a stunning display illuminated by ambient lighting. This high-performance machine is perfect for both work and play, delivering powerful processing in a sleek, portable design. The vibrant colors add a touch of personality to your tech collection, making it as stylish as it is functional.",
+            "images": ["https://i.imgur.com/OKn1KFI.jpeg", "https://i.imgur.com/G4f21Ai.jpeg", "https://i.imgur.com/Z9oKRVJ.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 24,
+            "title": "Sleek Modern Laptop for Professionals",
+            "price": 97,
+            "description": "Experience cutting-edge technology and elegant design with our latest laptop model. Perfect for professionals on-the-go, this high-performance laptop boasts a powerful processor, ample storage, and a long-lasting battery life, all encased in a lightweight, slim frame for ultimate portability. Shop now to elevate your work and play.",
+            "images": ["https://i.imgur.com/ItHcq7o.jpeg", "https://i.imgur.com/55GM3XZ.jpeg", "https://i.imgur.com/tcNJxoW.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 2,
+                "name": "Electronics",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        },
+        {
+            "id": 25,
+            "title": "Stylish Red & Silver Over-Ear Headphones",
+            "price": 39,
+            "description": "Immerse yourself in superior sound quality with these sleek red and silver over-ear headphones. Designed for comfort and style, the headphones feature cushioned ear cups, an adjustable padded headband, and a detachable red cable for easy storage and portability. Perfect for music lovers and audiophiles who value both appearance and audio fidelity.",
+            "images": ["https://i.imgur.com/YaSqa06.jpeg", "https://i.imgur.com/isQAliJ.jpeg", "https://i.imgur.com/5B8UQfh.jpeg"],
+            "creationAt": "2024-05-05T05:05:28.404Z",
+            "updatedAt": "2024-05-05T05:05:28.404Z",
+            "category": {
+                "id": 5,
+                "name": "Miscellaneous",
+                "image": "https://i.imgur.com/ZANVnHE.jpeg",
+                "creationAt": "2024-05-05T05:05:28.330Z",
+                "updatedAt": "2024-05-05T05:05:28.330Z"
+            }
+        }
+    ]
+}

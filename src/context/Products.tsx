@@ -1,19 +1,25 @@
 import React, { createContext, useCallback, useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
 
-import axios from 'axios';
-
+import { cards } from '@/data/db.json';
 import type { Product } from '@/interfaces/Product';
 
-import 'react-toastify/dist/ReactToastify.css';
+import getFilteredCards from './DefaultData';
+import axios from 'axios';
 
 const api = axios.create({
     baseURL: 'https://ma-backend-api.mocintra.com/api/v1/',
 });
 
+const defaultParameters = {
+    limit: 8,
+    offset: 0,
+    categoryId: 0,
+    title: '',
+    sortOrder: 'asc',
+};
+
 interface ProductsDataContextInterface {
     productsList: Product[];
-    isError: boolean;
     isLoading: boolean;
     totalProducts: number;
     fetchProducts: (parameters?: { offset: number; sortOrder: string; limit: number; title: string; categoryId: string }) => void;
@@ -24,7 +30,6 @@ interface ProductsDataContextInterface {
 export const ProductsDataContext = createContext<ProductsDataContextInterface>({
     productsList: [],
     isLoading: true,
-    isError: false,
     totalProducts: 0,
     fetchProducts: () => {},
     fetchProductById: async () => {},
@@ -36,32 +41,30 @@ interface ProductsDataContextProviderProps {
 
 api.interceptors.response.use(
     (response) => response,
-    (error) => {
-        const message = error.response?.data?.message || error.message || 'An error occurred';
-        toast.error(message);
-        return Promise.reject(error);
-    },
+    (error) => Promise.reject(error),
 );
 
 export function ProductsDataContextProvider({ children }: ProductsDataContextProviderProps) {
     const [productsList, setProductsList] = useState<Product[]>([]);
     const [product, setProduct] = useState<Product>();
     const [totalProducts, setTotalProducts] = useState(0);
-    const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    const fetchProducts = useCallback(async (parameters: Record<string, string | number> = {}) => {
+    const fetchProducts = useCallback(async (parameters: Record<string, string | number> = defaultParameters) => {
         setIsLoading(true);
         const query = new URLSearchParams(parameters as any).toString();
         try {
+            // Attempt to fetch products from the server
             const response = await api.get(`products?${query}`);
             const data = response.data;
             setProductsList(data.products);
             setTotalProducts(data.total);
-            setIsError(false);
-        } catch (error) {
-            console.error(error);
-            setIsError(true);
+        } catch {
+            // Fallback to default data when the server is unavailable
+            // Filters and paginates the local data to provide a consistent user experience
+            const defaultCardsWithIds = await getFilteredCards(cards, query);
+            setProductsList(defaultCardsWithIds.filteredCards);
+            setTotalProducts(defaultCardsWithIds.total);
         } finally {
             setIsLoading(false);
         }
@@ -73,10 +76,11 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
             const response = await api.get(`products/${productId}`);
             const data = response.data;
             setProduct(data);
-            setIsError(false);
-        } catch (error) {
-            console.error(error);
-            setIsError(true);
+        } catch {
+            const foundProduct = cards.find((card) => String(card.id) === productId);
+            if (foundProduct) {
+                setProduct(foundProduct);
+            }
         } finally {
             setIsLoading(false);
         }
@@ -84,7 +88,6 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
 
     const contextValue = {
         productsList,
-        isError,
         isLoading,
         fetchProducts,
         totalProducts,
@@ -92,10 +95,5 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         fetchProductById,
     };
 
-    return (
-        <ProductsDataContext.Provider value={contextValue}>
-            {children}
-            <ToastContainer />
-        </ProductsDataContext.Provider>
-    );
+    return <ProductsDataContext.Provider value={contextValue}>{children}</ProductsDataContext.Provider>;
 }

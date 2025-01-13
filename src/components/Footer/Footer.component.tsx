@@ -1,5 +1,4 @@
 import { Socials } from '../Socials/Socials.component';
-
 import styles from './footer.module.css';
 
 export const Footer = () => (

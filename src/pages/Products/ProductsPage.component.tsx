@@ -11,7 +11,7 @@ const SCROLL_THRESHOLD = 150;
 const ITEMS_PER_PAGE = 8;
 
 export function ProductsPage() {
-    const { productsList, isError, isLoading, totalProducts, fetchProducts } = useContext(ProductsDataContext);
+    const { productsList, isLoading, totalProducts, fetchProducts } = useContext(ProductsDataContext);
     const [currentPage, setCurrentPage] = useState(1);
     const [categoryNumber, setCategoryNumber] = useState<string>('0');
     const [sort, setSort] = useState<string>('newest');
@@ -77,7 +77,7 @@ export function ProductsPage() {
     return (
         <section>
             <SearchBar setFilter={handleFilterChange} setSort={setSort} setSearchQuery={setSearchQuery} />
-            <ProductsList productsList={products} isError={isError} isLoading={isLoading} isMobile={isMobile} />
+            <ProductsList productsList={products} isLoading={isLoading} isMobile={isMobile} />
             {!isMobile && <Pagination page={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />}
         </section>
     );
