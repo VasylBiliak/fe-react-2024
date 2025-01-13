@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { LoadingMessage } from '@/components/Messages/LoadingMessage.component';
 import { NoFoundMessage } from '@/components/Messages/NoFoundMessage.component';
 

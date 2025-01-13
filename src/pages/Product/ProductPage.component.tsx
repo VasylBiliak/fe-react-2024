@@ -9,7 +9,6 @@ import { Cart } from '@/context/Cart';
 import { ProductsDataContext } from '@/context/Products';
 
 import styles from './productPage.module.css';
-import clsx from 'clsx';
 
 export const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
