@@ -1,5 +1,8 @@
-const getFilteredCards = async (cards: any, query: string) => {
-    const queryParameters = Object.fromEntries(new URLSearchParams(query));
+import type { Product } from '@/interfaces/Product';
+import type { QueryParameters } from '@/interfaces/QueryParameters';
+
+const getFilteredCards = async (cards: Product[], query: string) => {
+    const queryParameters: QueryParameters = Object.fromEntries(new URLSearchParams(query)) as any;
     const categoryId = Number(queryParameters.categoryId) || 0;
     const title = queryParameters.title?.toLowerCase() || '';
     const sortOrder = queryParameters.sortOrder || 'asc';
@@ -9,15 +12,15 @@ const getFilteredCards = async (cards: any, query: string) => {
     let filteredCards = [...cards];
 
     if (title) {
-        filteredCards = filteredCards.filter((card: any) => card.title.toLowerCase().includes(title));
+        filteredCards = filteredCards.filter((card: Product) => card.title.toLowerCase().includes(title));
     }
 
     if (categoryId > 0) {
-        filteredCards = filteredCards.filter((card: any) => card.category.id === categoryId);
+        filteredCards = filteredCards.filter((card: Product) => card.category.id === categoryId);
     }
 
     if (sortOrder) {
-        filteredCards.sort((a: any, b: any) => {
+        filteredCards.sort((a: Product, b: Product) => {
             const comparison = new Date(a.creationAt).getTime() - new Date(b.creationAt).getTime();
             return sortOrder === 'asc' ? comparison : -comparison;
         });
