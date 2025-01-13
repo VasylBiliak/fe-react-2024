@@ -1,17 +1,17 @@
 {
-  "rules": {
-    "unicorn/prevent-abbreviations": [
-      "error",
-      {
-        "ignore": ["/props|Props|\\w+Props/g"],
-          "allowList": {
-            "props": true,
-            "Props": true,
-            "env": true
-          }
-      }
-    ],
-    "unicorn/filename-case": "off",
-    "unicorn/consistent-function-scoping": "off"
-  }
+    "rules": {
+        "unicorn/prevent-abbreviations": [
+            "error",
+            {
+                "ignore": ["/props|Props|\\w+Props/g"],
+                "allowList": {
+                    "props": true,
+                    "Props": true,
+                    "env": true
+                }
+            }
+        ],
+        "unicorn/filename-case": "off",
+        "unicorn/consistent-function-scoping": "off"
+    }
 }

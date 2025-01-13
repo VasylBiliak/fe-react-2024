@@ -1,5 +1,4 @@
 import picture from '../../assets/about/aboutIMG.svg';
-
 import styles from './about.module.css';
 
 export function AboutPage() {

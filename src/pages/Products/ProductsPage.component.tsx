@@ -1,24 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
+import { ProductsDataContext } from '@/context/Products';
 import type { Product } from '@/interfaces/Product';
-import { selectIsError, selectIsLoading, selectProducts, selectTotalProducts } from '@/store/products/slice';
-import { fetchProducts } from '@/store/products/thunks';
-
-import { Pagination } from './components/Pagination/Pagination.component';
-import { ProductsList } from './components/ProductsList/ProductsList.component';
-import { SearchBar } from './components/SearchBar/SearchBar.component';
+import { Pagination } from '@/pages/Products/Pagination/Pagination.component';
+import { ProductsList } from '@/pages/Products/ProductsList/ProductsList.component';
+import { SearchBar } from '@/pages/Products/SearchBar/SearchBar.component';
 
 const MOBILE_WIDTH = 900;
 const SCROLL_THRESHOLD = 150;
 const ITEMS_PER_PAGE = 8;
 
 export function ProductsPage() {
-    const dispatch = useDispatch();
-    const productsList = useSelector(selectProducts);
-    const isError = useSelector(selectIsError);
-    const isLoading = useSelector(selectIsLoading);
-    const totalProducts = useSelector(selectTotalProducts);
+    const { productsList, isLoading, totalProducts, fetchProducts } = useContext(ProductsDataContext);
     const [currentPage, setCurrentPage] = useState(1);
     const [categoryNumber, setCategoryNumber] = useState<string>('0');
     const [sort, setSort] = useState<string>('newest');
@@ -39,16 +32,14 @@ export function ProductsPage() {
     }, []);
 
     useEffect(() => {
-        dispatch(
-            fetchProducts({
-                limit: ITEMS_PER_PAGE,
-                offset: (currentPage - 1) * ITEMS_PER_PAGE,
-                categoryId: categoryNumber,
-                title: searchQuery,
-                sortOrder: sort === 'newest' ? 'asc' : 'desc',
-            }),
-        );
-    }, [currentPage, categoryNumber, sort, searchQuery, dispatch]);
+        fetchProducts({
+            limit: ITEMS_PER_PAGE,
+            offset: (currentPage - 1) * ITEMS_PER_PAGE,
+            categoryId: categoryNumber,
+            title: searchQuery,
+            sortOrder: sort === 'newest' ? 'asc' : 'desc',
+        });
+    }, [currentPage, categoryNumber, sort, searchQuery, fetchProducts]);
 
     useEffect(() => {
         if (isMobile) {
@@ -70,7 +61,7 @@ export function ProductsPage() {
             !isLoading &&
             currentPage < totalPages
         ) {
-            setCurrentPage((previousPage) => previousPage + 1);
+            setCurrentPage(currentPage + 1);
         }
     }, [isLoading, currentPage, totalPages]);
 
@@ -86,7 +77,7 @@ export function ProductsPage() {
     return (
         <section>
             <SearchBar setFilter={handleFilterChange} setSort={setSort} setSearchQuery={setSearchQuery} />
-            <ProductsList productsList={products} isError={isError} isLoading={isLoading} isMobile={isMobile} />
+            <ProductsList productsList={products} isLoading={isLoading} isMobile={isMobile} />
             {!isMobile && <Pagination page={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />}
         </section>
     );

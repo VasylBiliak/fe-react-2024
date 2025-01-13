@@ -39,7 +39,8 @@
 
 .themes__btn > img {
   filter: brightness(.6);
-  transition: filter .3s, fill .3s;
+  transition: filter .3s,
+    fill .3s;
 }
 
 .themes__btn.theme_active > img,
@@ -211,7 +212,6 @@
     grid-template-columns: 1fr;
     gap: 5px;
   }
-
 
   .about {
     display: grid;

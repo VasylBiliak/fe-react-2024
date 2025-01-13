@@ -5,7 +5,6 @@ import { Icon } from '@/ui/SocialIcon/SocialIcon';
 import INIcon from '../../../src/assets/footer/insta.svg';
 import LNIcon from '../../../src/assets/footer/linkedin.svg';
 import FBIcon from '../../../src/assets/footer/Vector.svg';
-
 import styles from './socials.module.css';
 
 export function Socials({ className, ...restProps }: React.ComponentProps<'ul'>) {

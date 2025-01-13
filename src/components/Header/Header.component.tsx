@@ -1,25 +1,62 @@
-import React, { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink, useMatch } from 'react-router-dom';
 
 import cart from '@/assets/header/cart.svg';
+import darkIcon from '@/assets/header/dark_active.svg';
+import divider from '@/assets/header/divider.svg';
+import lightIcon from '@/assets/header/light_active.svg';
 import loginImg from '@/assets/header/login.svg';
 import menu from '@/assets/header/Menu_Duo_LG.svg';
 import userAdd from '@/assets/header/user_add.svg';
 import logo from '@/assets/logo.svg';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher/ThemeSwitcher.component';
 import { Cart } from '@/context/Cart';
 import { Component } from '@/interfaces/Component';
+import { Theme } from '@/interfaces/Theme';
 
 import styles from './header.module.css';
 
+const htmlElement = document.querySelector('html');
+const isLightTheme = window.matchMedia('(prefers-color-scheme: light)').matches;
+
 export function Header() {
+    let initialTheme: Theme;
     const { cartData } = useContext(Cart);
     const productsMatchUrl = useMatch(`${Component.PRODUCTS}`);
+
+    if (localStorage.getItem('theme')) {
+        initialTheme = localStorage.getItem('theme') as Theme;
+    } else {
+        initialTheme = isLightTheme ? Theme.LIGHT : Theme.DARK;
+    }
+
+    const [theme, setTheme] = useState<Theme>(initialTheme);
+    htmlElement!.dataset.theme = theme;
+
+    function handleChangeTheme(themeText: Theme) {
+        setTheme(themeText);
+        localStorage.setItem('theme', themeText);
+    }
 
     return (
         <header className={styles.header}>
             <img className={styles.header__logo} src={logo} alt="logo" width="40px" height="40px" />
-            <ThemeSwitcher />
+            <div className={styles.themes} title="Theme switcher">
+                <button
+                    className={`${styles.themes__btn} ${theme === Theme.LIGHT ? styles.theme_active : ''}`}
+                    title="Light theme"
+                    onClick={() => handleChangeTheme(Theme.LIGHT)}
+                >
+                    <img src={lightIcon} alt="light theme" width="20px" height="20px" />
+                </button>
+                <img src={divider} alt="divider" width="20px" height="20px" />
+                <button
+                    className={`${styles.themes__btn} ${theme === Theme.DARK ? styles.theme_active : ''}`}
+                    title="Dark theme"
+                    onClick={() => handleChangeTheme(Theme.DARK)}
+                >
+                    <img src={darkIcon} alt="dark theme" width="20px" height="20px" />
+                </button>
+            </div>
             <nav className={styles.header__links}>
                 <NavLink to="" className={productsMatchUrl ? styles.header__link : styles.header__link_active}>
                     About
