@@ -54,14 +54,17 @@ export function ProductsDataContextProvider({ children }: ProductsDataContextPro
         setIsLoading(true);
         const query = new URLSearchParams(parameters as any).toString();
         try {
+            // Attempt to fetch products from the server
             const response = await api.get(`products?${query}`);
             const data = response.data;
             setProductsList(data.products);
             setTotalProducts(data.total);
         } catch {
+            // Fallback to default data when the server is unavailable
+            // Filters and paginates the local data to provide a consistent user experience
             const defaultCardsWithIds = await getFilteredCards(cards, query);
-            setProductsList(defaultCardsWithIds);
-            setTotalProducts(defaultCardsWithIds.length);
+            setProductsList(defaultCardsWithIds.filteredCards);
+            setTotalProducts(defaultCardsWithIds.total);
         } finally {
             setIsLoading(false);
         }
