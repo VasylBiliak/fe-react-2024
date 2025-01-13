@@ -6,7 +6,6 @@ import type { Category } from '@/interfaces/Category';
 import { CustomSelector } from '../CustomSelector/CustomSelector';
 import styles from './SearchBar.module.css';
 import clsx from 'clsx';
-
 interface SearchBarProps {
     setFilter: (filter: string) => void;
     setSort: (sort: string) => void;
